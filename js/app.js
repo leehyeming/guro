@@ -564,4 +564,201 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // ── FEATURE 5: KAKAO MAP INTEGRATION ──
+  const KAKAO_KEY = 'YOUR_JAVASCRIPT_KEY_HERE'; // Replace with user's Kakao Javascript Key
+  
+  const mapSection = document.getElementById('visit-map');
+  if (mapSection) {
+    const mapObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        mapSection.classList.add('in');
+        mapObserver.unobserve(mapSection);
+      }
+    }, { threshold: 0.15 });
+    mapObserver.observe(mapSection);
+  }
+
+  const loadKakaoMap = () => {
+    const mapContainer = document.getElementById('kakao-map');
+    if (!mapContainer) return;
+
+    // Show Placeholder if API Key is not set
+    if (!KAKAO_KEY || KAKAO_KEY === 'YOUR_JAVASCRIPT_KEY_HERE' || KAKAO_KEY === '') {
+      mapContainer.innerHTML = `
+        <div class="map-placeholder">
+          <div class="map-placeholder-icon">🗺️</div>
+          <h4 class="map-placeholder-title">카카오맵 API 연동 대기 중</h4>
+          <p class="map-placeholder-desc">
+            본 페이지는 로컬 및 웹 환경에서 작동하는 실시간 카카오맵 API 코드를 모두 구비하고 있습니다.<br>
+            카카오 개발자 콘솔에서 발급받은 <code>자바스크립트 키</code>를 <code>js/app.js</code> 상단의 <code>KAKAO_KEY</code> 변수에 입력하시면 실시간 인터랙티브 지도가 즉시 작동합니다.
+          </p>
+          <a href="https://developers.kakao.com/" target="_blank" rel="noopener" class="map-placeholder-btn">카카오 개발자 센터 바로가기</a>
+        </div>
+      `;
+      return;
+    }
+
+    // Dynamic SDK script loading
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_KEY}&autoload=false`;
+    script.onload = () => {
+      kakao.maps.load(() => {
+        initializeKakaoMap(mapContainer);
+      });
+    };
+    script.onerror = () => {
+      mapContainer.innerHTML = `
+        <div class="map-placeholder">
+          <div class="map-placeholder-icon">⚠️</div>
+          <h4 class="map-placeholder-title">API 로드 에러</h4>
+          <p class="map-placeholder-desc">카카오맵 스크립트를 불러오지 못했습니다. API 키가 유효한지 또는 도메인 허용 설정(Web 플랫폼 등록)이 올바른지 확인해 주세요.</p>
+        </div>
+      `;
+    };
+    document.head.appendChild(script);
+  };
+
+  const initializeKakaoMap = (container) => {
+    // Spot list with real-world coordinates (around Guro Hang-dong and Oryu-dong)
+    const mapSpots = [
+      {
+        num: '01',
+        name: '푸른수목원',
+        lat: 37.482701,
+        lng: 126.822956,
+        dur: '⏱ 약 2시간 권장',
+        desc: '서울시 최초의 시립 수목원으로 고요한 수변 데크가 펼쳐집니다.'
+      },
+      {
+        num: '02',
+        name: '항동푸른도서관',
+        lat: 37.482743,
+        lng: 126.825221,
+        dur: '⏱ 자유롭게 탐방',
+        desc: '수목원의 아름다운 조망을 가득 담은 조용하고 아늑한 도서관.'
+      },
+      {
+        num: '03',
+        name: 'KB숲교육센터',
+        lat: 37.483482,
+        lng: 126.824249,
+        dur: '⏱ 약 15분 소요',
+        desc: '이국적인 유리온실 속 다양한 아열대 허브 식물 쉼터.'
+      },
+      {
+        num: '04',
+        name: '항동철길',
+        lat: 37.484439,
+        lng: 126.824734,
+        dur: '⏱ 약 25분 소요',
+        desc: '옛 화물열차가 오가던 흔적이 그대로 남은 정취 있는 단선 철도.'
+      },
+      {
+        num: '05',
+        name: '오류버들마을',
+        lat: 37.492211,
+        lng: 126.840612,
+        dur: '⏱ 약 2시간 이상',
+        desc: '힙한 브런치 카페, 로컬 공방이 가득한 매력 넘치는 골목길.'
+      }
+    ];
+
+    // Center coordinates
+    const centerLat = 37.4871;
+    const centerLng = 126.8318;
+
+    const options = {
+      center: new kakao.maps.LatLng(centerLat, centerLng),
+      level: 5 // map zoom level
+    };
+
+    const map = new kakao.maps.Map(container, options);
+
+    // Map Controls
+    const zoomControl = new kakao.maps.ZoomControl();
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+    const mapTypeControl = new kakao.maps.MapTypeControl();
+    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+    // Marker bounds for auto-fitting
+    const bounds = new kakao.maps.LatLngBounds();
+    const linePath = [];
+    let currentOverlay = null;
+
+    mapSpots.forEach((spot) => {
+      const position = new kakao.maps.LatLng(spot.lat, spot.lng);
+      linePath.push(position);
+      bounds.extend(position);
+
+      const marker = new kakao.maps.Marker({
+        map: map,
+        position: position,
+        title: spot.name
+      });
+
+      // Custom HTML overlay content
+      const overlayContent = document.createElement('div');
+      overlayContent.className = 'map-overlay-card';
+      overlayContent.innerHTML = `
+        <div class="map-overlay-hdr">
+          <span class="map-overlay-title">STEP ${spot.num} ${spot.name}</span>
+          <button class="map-overlay-close">✕</button>
+        </div>
+        <div class="map-overlay-body">
+          <p>${spot.desc}</p>
+          <span class="map-overlay-dur">${spot.dur}</span>
+        </div>
+      `;
+
+      // Custom overlay object
+      const customOverlay = new kakao.maps.CustomOverlay({
+        content: overlayContent,
+        position: position,
+        yAnchor: 1.15
+      });
+
+      // Add close button event inside overlay
+      overlayContent.querySelector('.map-overlay-close').addEventListener('click', (e) => {
+        e.stopPropagation();
+        customOverlay.setMap(null);
+        currentOverlay = null;
+      });
+
+      // Show overlay on marker click
+      kakao.maps.event.addListener(marker, 'click', () => {
+        if (currentOverlay) {
+          currentOverlay.setMap(null);
+        }
+        customOverlay.setMap(map);
+        currentOverlay = customOverlay;
+        map.panTo(position);
+      });
+    });
+
+    // Close open overlay when clicking map background
+    kakao.maps.event.addListener(map, 'click', () => {
+      if (currentOverlay) {
+        currentOverlay.setMap(null);
+        currentOverlay = null;
+      }
+    });
+
+    // Draw Polyline connecting all 5 spots
+    const polyline = new kakao.maps.Polyline({
+      path: linePath,
+      strokeWeight: 4,
+      strokeColor: '#4a7c59',
+      strokeOpacity: 0.8,
+      strokeStyle: 'dashed'
+    });
+    polyline.setMap(map);
+
+    // Zoom the map to display all markers nicely
+    map.setBounds(bounds);
+  };
+
+  loadKakaoMap();
 });

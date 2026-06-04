@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L1H0SEVGEQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-L1H0SEVGEQ');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>구로를 걷다 — 초록 숲길에서 비우고 버들마을에서 채우다</title>
@@ -517,6 +527,17 @@
             <li>버들마을 내 식사 및 음료/디저트: 인당 약 15,000 ~ 20,000원 선</li>
           </ul>
           <div class="vtot">총 1인 약 2만 원 내외</div>
+        </div>
+      </div>
+
+      <!-- Kakao Map Area -->
+      <div class="map-section animate-item" id="visit-map">
+        <div class="map-header">
+          <h3 class="map-title">실시간 인터랙티브 코스 지도</h3>
+          <p class="map-subtitle">실제 지도 상에서 5개 코스 지점의 실시간 위치와 상세 경로를 확인하세요.</p>
+        </div>
+        <div class="map-container-wrap">
+          <div id="kakao-map"></div>
         </div>
       </div>
     </div>
