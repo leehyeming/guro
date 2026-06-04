@@ -761,4 +761,50 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   loadKakaoMap();
+
+  // ── FEATURE 6: FAQ ACCORDION LOGIC & SCROLL ANIMATION ──
+  const faqSection = document.getElementById('visit-faq');
+  if (faqSection) {
+    const faqObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        faqSection.classList.add('in');
+        faqObserver.unobserve(faqSection);
+      }
+    }, { threshold: 0.15 });
+    faqObserver.observe(faqSection);
+  }
+
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const trigger = item.querySelector('.faq-trigger');
+    const panel = item.querySelector('.faq-panel');
+    
+    if (trigger && panel) {
+      trigger.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        
+        // Close all other FAQ items for a clean accordion effect
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+            const otherPanel = otherItem.querySelector('.faq-panel');
+            if (otherPanel) otherPanel.style.maxHeight = null;
+            const otherTrigger = otherItem.querySelector('.faq-trigger');
+            if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+        
+        // Toggle current item
+        if (isActive) {
+          item.classList.remove('active');
+          panel.style.maxHeight = null;
+          trigger.setAttribute('aria-expanded', 'false');
+        } else {
+          item.classList.add('active');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
+  });
 });

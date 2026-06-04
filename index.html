@@ -34,7 +34,7 @@
   <meta name="twitter:description" content="구로구 항동·오류동 반나절 힐링 코스. 6만 평 숲, 시간이 멈춘 철길, 오류버들마을 로컬 맛집 투어.">
   <meta name="twitter:image" content="https://leehyeming.github.io/guro/images/og-preview.jpg">
 
-  <!-- JSON-LD Structured Data for Google Rich Results -->
+  <!-- JSON-LD Structured Data for Google Rich Results & AEO/GEO -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -54,6 +54,38 @@
       }
     },
     "touristType": ["Healing", "Nature Walking", "Local Food Tour"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "구로구 항동 반나절 힐링 코스의 추천 경로와 총 소요 시간은 어떻게 되나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "추천 경로는 1. 푸른수목원(약 2시간) ➔ 2. 항동푸른도서관 ➔ 3. KB숲교육센터(약 15분) ➔ 4. 항동철길(약 25분) ➔ 5. 오류버들마을(약 2시간 이상) 순서로 이어지는 총 약 5시간(도보 거리 약 4.2km)의 힐링 코스입니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "푸른수목원과 항동철길 방문 시 알아야 할 꿀팁이나 주의사항이 있나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "서울 시립 푸른수목원은 쓰레기통이 전혀 없는 제로웨이스트 공원이므로 개인 쓰레기 봉투를 반드시 지참하셔야 하며, 항동철길은 보행자 안전을 위해 자전거 및 전동 킥보드 탑승이 전면 금지되어 있습니다. 또한 철길 코스는 그늘이 거의 없어 모자와 양산, 자외선 차단제 지참을 강력 추천합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "오류버들마을에서 먹을 만한 추천 로컬 메뉴에는 어떤 것들이 있나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "오류버들마을 골목 상점가에는 강원도식 들깨 국물로 끓인 감자옹심이, 패티가 신선한 수제버거, 바삭한 노포 가마솥 옛날통닭, 얼큰한 부대찌개, 그리고 화초가 가득한 카페의 핸드드립 커피와 크루아상 베이커리가 현지 맛집 메뉴로 인기를 모으고 있습니다."
+        }
+      }
+    ]
   }
   </script>
 
@@ -570,6 +602,63 @@
           <div id="kakao-map"></div>
         </div>
       </div>
+
+      <!-- FAQ Section for AEO/GEO (Accordion UI) -->
+      <div class="faq-section animate-item" id="visit-faq">
+        <div class="faq-header">
+          <h3 class="faq-title">자주 묻는 질문 (FAQ)</h3>
+          <p class="faq-subtitle">구로 힐링 도보 여행 코스에 대해 가장 궁금해하시는 핵심 정보를 모았습니다.</p>
+        </div>
+        <div class="faq-list">
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span class="faq-q">Q. 구로구 항동 반나절 힐링 코스의 추천 경로와 총 소요 시간은 어떻게 되나요?</span>
+              <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-content">
+                <p>추천 도보 경로는 <strong>1. 푸른수목원(약 2시간) ➔ 2. 항동푸른도서관 ➔ 3. KB숲교육센터(약 15분) ➔ 4. 항동철길(약 25분) ➔ 5. 오류버들마을(약 2시간 이상)</strong> 순서로 이어집니다.</p>
+                <p>총 도보 거리는 <strong>약 4.2km</strong>이며, 각 장소에서의 휴식과 관람, 식사 시간을 포함하여 <strong>총 약 5시간</strong>이 소요되는 힐링 여행 최적화 코스입니다.</p>
+              </div>
+            </div>
+          </div>
+          <!-- FAQ Item 2 -->
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span class="faq-q">Q. 푸른수목원과 항동철길 방문 시 알아야 할 꿀팁이나 주의사항이 있나요?</span>
+              <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-content">
+                <ul>
+                  <li><strong>푸른수목원</strong>: 서울시 최초의 시립 수목원으로 생태 보전을 위해 공원 내 휴지통이 일절 없습니다. 발생한 개인 쓰레기는 다시 담아갈 봉투를 반드시 지참하세요.</li>
+                  <li><strong>항동철길</strong>: 선로가 좁고 자갈길이 많아 킥보드, 유모차, 자전거의 진입이나 탑승이 엄격히 금지됩니다. 또한 철로 코스 전체에 그늘막이 없어 자외선 차단용 모자나 선글라스, 양산을 챙기는 것이 좋습니다.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- FAQ Item 3 -->
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span class="faq-q">Q. 오류버들마을에서 먹을 만한 추천 로컬 메뉴에는 어떤 것들이 있나요?</span>
+              <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-content">
+                <p>오류버들마을 골목길 구석구석에 숨겨진 로컬 맛집들의 대표 메뉴는 다음과 같습니다:</p>
+                <ul>
+                  <li>쫄깃하고 구수한 메밀 들깨 육수의 <strong>감자옹심이</strong></li>
+                  <li>육즙이 살아있는 그릴 패티를 넣은 힙한 골목 <strong>수제버거</strong></li>
+                  <li>가마솥 노포에서 전통 방식으로 튀겨낸 겉바속촉 <strong>옛날통닭</strong></li>
+                  <li>얼큰하고 시원하게 끓여 밥 한 공기 비우는 뚝배기 <strong>부대찌개</strong></li>
+                  <li>조용하고 한적한 식물 카페에서 내리는 싱글오리진 <strong>핸드드립 브런치 커피</strong> 및 유기농 <strong>크루아상</strong></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -688,7 +777,7 @@
       </div>
     </div>
     
-    <p class="fmeta" style="margin-top: 28px;">구로 지역 현장답사 분석 발표자료 &middot; GLOWIDE 이혜민</p>
+    <p class="fmeta" style="margin-top: 28px;">작성일: 2026년 6월 4일 &middot; 작성자: 로컬 여행 크리에이터 이혜민 (GLOWIDE) &middot; 정보 출처: 서울시 구로구청 공식 문화관광 포털 및 현장 실사 기반</p>
     <p class="fcopy">© 2026 구로를 걷다. All rights reserved.</p>
     <button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ 맨 위로</button>
   </footer>
