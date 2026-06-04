@@ -1,0 +1,15 @@
+{
+  "name": "guro-walk",
+  "version": "1.0.0",
+  "description": "구로를 걷다 - 구로 관광 홈페이지",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

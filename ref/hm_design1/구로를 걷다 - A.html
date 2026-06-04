@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>구로를 걷다 — 숲에서 비우고 버들마을에서 채우다</title>
+<meta name="description" content="구로구 항동·오류동 반나절 힐링 코스. 6만 평 숲, 시간이 멈춘 철길, 오류버들마을 로컬 맛집을 5시간에 즐기는 코스 안내.">
+<meta property="og:title" content="구로를 걷다 — 숲에서 비우고 버들마을에서 채우다">
+<meta property="og:description" content="구로구 항동·오류동 반나절 힐링 코스. 6만 평 숲, 시간이 멈춘 철길, 오류버들마을.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&q=80">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌳</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:      #0b1710;
+  --bg2:     #111f16;
+  --surface: #19291e;
+  --leaf:    #4a7c59;
+  --gold:    #c4a24a;
+  --cream:   #faf7f2;
+  --text:    #e4e0da;
+  --muted:   rgba(228,224,218,.55);
+  --bdr:     rgba(74,124,89,.18);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  background: var(--bg); color: var(--text);
+  overflow-x: hidden; -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; }
+ul { list-style: none; padding: 0; }
+
+/* ── HEADER ── */
+#hdr {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 68px; padding: 0 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background .3s, border-color .3s;
+  border-bottom: 1px solid transparent;
+}
+#hdr.on { background: rgba(9,18,11,.93); backdrop-filter: blur(14px); border-color: var(--bdr); }
+.logo { font-family: 'Black Han Sans', sans-serif; font-size: 22px; color: var(--cream); letter-spacing: -.03em; }
+.logo em { color: var(--gold); font-style: normal; }
+nav.desk { display: flex; gap: 32px; }
+nav.desk a { font-size: 14px; color: var(--muted); letter-spacing: .06em; transition: color .2s; }
+nav.desk a:hover { color: var(--cream); }
+.mbtn { display: none; background: none; border: none; color: var(--cream); font-size: 20px; cursor: pointer; padding: 8px; }
+#mnav {
+  display: none; position: absolute; top: 68px; left: 0; right: 0;
+  background: rgba(9,18,11,.97); backdrop-filter: blur(16px);
+  flex-direction: column; border-bottom: 1px solid var(--bdr);
+}
+#mnav.open { display: flex; }
+#mnav a { padding: 16px 48px; font-size: 15px; color: var(--text); border-bottom: 1px solid rgba(74,124,89,.08); transition: color .2s, background .2s; }
+#mnav a:hover { color: var(--gold); background: rgba(74,124,89,.07); }
+
+/* ── HERO ── */
+#hero {
+  position: relative; height: 100vh; min-height: 640px;
+  display: flex; align-items: flex-end; justify-content: center;
+  overflow: hidden; padding-bottom: 88px;
+}
+#hbg {
+  position: absolute; top: -40%; bottom: -40%; left: 0; right: 0;
+  background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1920&q=80');
+  background-size: cover; background-position: center; background-color: #142318;
+  will-change: transform;
+}
+.hov {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(9,18,11,.97) 0%, rgba(9,18,11,.5) 45%, rgba(9,18,11,.15) 85%);
+}
+.hcon { position: relative; z-index: 2; text-align: center; max-width: 860px; padding: 0 24px; }
+.hl { display: inline-block; font-size: 12px; font-weight: 500; color: var(--gold); letter-spacing: .2em; border: 1px solid rgba(196,162,74,.4); padding: 5px 18px; border-radius: 100px; margin-bottom: 28px; opacity: 0; animation: fu .7s .3s forwards; }
+.ht { font-family: 'Black Han Sans', sans-serif; font-size: clamp(36px,6.5vw,86px); line-height: 1.1; color: var(--cream); word-break: keep-all; margin-bottom: 22px; opacity: 0; animation: fu .7s .55s forwards; }
+.hs { font-size: clamp(14px,1.8vw,18px); font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 36px; opacity: 0; animation: fu .7s .75s forwards; }
+.htags { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 44px; opacity: 0; animation: fu .7s .95s forwards; }
+.htag { font-size: 12px; padding: 5px 14px; border-radius: 100px; background: rgba(74,124,89,.22); color: #7abf92; border: 1px solid rgba(74,124,89,.35); }
+.hcta { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: #0b1710; font-family: 'Black Han Sans', sans-serif; font-size: 15px; padding: 15px 38px; border-radius: 3px; transition: transform .2s, box-shadow .2s; opacity: 0; animation: fu .7s 1.15s forwards; }
+.hcta:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(196,162,74,.32); }
+.shi { position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: 11px; letter-spacing: .12em; opacity: 0; animation: fi .8s 2s forwards; }
+.shi span { display: block; animation: bounce 2s 2.2s infinite; }
+
+/* ── STATS ── */
+.sbar { background: var(--surface); border-bottom: 1px solid var(--bdr); }
+.sinner { max-width: 960px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: repeat(4,1fr); }
+.si { padding: 38px 24px; text-align: center; border-right: 1px solid var(--bdr); }
+.si:last-child { border-right: none; }
+.sn { font-family: 'Black Han Sans', sans-serif; font-size: 50px; color: var(--gold); line-height: 1; }
+.su { font-size: 17px; color: var(--cream); font-weight: 400; }
+.sl { font-size: 12px; color: var(--muted); margin-top: 8px; letter-spacing: .08em; }
+
+/* ── COMMON SECTION ── */
+section { padding: 96px 0; }
+.inn { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+.ey { font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: .22em; text-transform: uppercase; margin-bottom: 14px; }
+.st { font-family: 'Black Han Sans', sans-serif; font-size: clamp(28px,3.2vw,46px); color: var(--cream); line-height: 1.15; margin-bottom: 8px; }
+.ss { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 56px; word-break: keep-all; }
+
+/* ── ROUTE ── */
+#route { background: var(--bg2); }
+.rmap { background: var(--surface); border-radius: 14px; overflow: hidden; border: 1px solid var(--bdr); }
+.rmap svg { width: 100%; height: auto; display: block; }
+
+/* ── PLACES ── */
+#places { background: var(--bg); }
+.pgrid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.pc {
+  background: var(--surface); border-radius: 12px; border: 1px solid var(--bdr);
+  overflow: hidden; transition: transform .25s, box-shadow .25s, border-color .25s;
+  opacity: 0; transform: translateY(28px);
+}
+.pc.in { opacity: 1; transform: translateY(0); transition: opacity .55s ease, transform .55s ease, box-shadow .25s, border-color .25s; }
+.pc:hover { transform: translateY(-5px) !important; box-shadow: 0 20px 50px rgba(0,0,0,.5); border-color: rgba(74,124,89,.38); }
+.pimg { height: 190px; display: flex; align-items: center; justify-content: center; font-size: 58px; }
+.pc:nth-child(1) .pimg { background: linear-gradient(135deg,#0c2210,#1a4228); }
+.pc:nth-child(2) .pimg { background: linear-gradient(135deg,#0c1e2e,#1a3450); }
+.pc:nth-child(3) .pimg { background: linear-gradient(135deg,#0c2218,#1a4232); }
+.pc:nth-child(4) .pimg { background: linear-gradient(135deg,#221a0c,#403018); }
+.pc:nth-child(5) .pimg { background: linear-gradient(135deg,#1a0c28,#321848); }
+.pw { grid-column: 1 / -1; }
+.pw .pimg { height: 210px; }
+.pb { padding: 24px 28px 28px; }
+.sbdg { display: inline-block; font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: .12em; border: 1px solid rgba(196,162,74,.35); padding: 3px 10px; border-radius: 100px; margin-bottom: 14px; }
+.pn { font-family: 'Black Han Sans', sans-serif; font-size: 22px; color: var(--cream); margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pd { font-size: 13px; color: var(--leaf); margin-bottom: 12px; }
+.ph { font-size: 14px; color: var(--muted); line-height: 1.72; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 16px; }
+.pt { font-size: 13px; color: rgba(196,162,74,.84); background: rgba(196,162,74,.07); border-left: 2px solid rgba(196,162,74,.4); padding: 8px 14px; border-radius: 0 4px 4px 0; line-height: 1.55; }
+
+/* ── FOOD ── */
+#food { background: var(--bg2); }
+.fgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.fc { perspective: 1000px; height: 222px; }
+.fci { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+.fc:hover .fci, .fc:focus-within .fci { transform: rotateY(180deg); }
+.ff, .fb { position: absolute; inset: 0; border-radius: 12px; backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.ff { background: var(--surface); border: 1px solid var(--bdr); }
+.fb { background: var(--leaf); transform: rotateY(180deg); padding: 20px 22px; text-align: center; gap: 10px; }
+.fe { font-size: 48px; margin-bottom: 10px; }
+.fname { font-family: 'Black Han Sans', sans-serif; font-size: 17px; color: var(--cream); }
+.fbn { font-family: 'Black Han Sans', sans-serif; font-size: 19px; color: #fff; margin-bottom: 4px; }
+.fdesc { font-size: 12.5px; color: rgba(255,255,255,.88); line-height: 1.68; }
+.fnote { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 44px; line-height: 1.8; }
+
+/* ── VISIT ── */
+#visit { background: var(--bg); }
+.vgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+.vb { background: var(--surface); border-radius: 12px; border: 1px solid var(--bdr); padding: 32px 28px; }
+.vic { font-size: 30px; margin-bottom: 18px; }
+.vb h3 { font-family: 'Black Han Sans', sans-serif; font-size: 17px; color: var(--gold); margin-bottom: 16px; }
+.vb p, .vb li { font-size: 13.5px; color: var(--muted); line-height: 1.85; }
+.vb li { padding-left: 14px; position: relative; margin-bottom: 3px; }
+.vb li::before { content: '—'; position: absolute; left: 0; color: var(--leaf); }
+.vtot { font-family: 'Black Han Sans', sans-serif; font-size: 22px; color: var(--gold); margin-top: 16px; }
+
+/* ── FOOTER ── */
+footer { background: #060e08; border-top: 1px solid var(--bdr); padding: 52px 0 36px; text-align: center; }
+.flogo { font-family: 'Black Han Sans', sans-serif; font-size: 30px; color: var(--cream); margin-bottom: 14px; }
+.flogo em { color: var(--gold); font-style: normal; }
+.fmeta { font-size: 13px; color: var(--muted); line-height: 2; }
+.fcopy { font-size: 11px; color: rgba(228,224,218,.22); margin-top: 8px; }
+.totop { display: inline-flex; align-items: center; gap: 6px; margin-top: 28px; padding: 10px 24px; border-radius: 100px; background: none; border: 1px solid var(--bdr); color: var(--leaf); font-size: 13px; cursor: pointer; font-family: 'Noto Sans KR', sans-serif; transition: border-color .2s, color .2s; }
+.totop:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── KEYFRAMES ── */
+@keyframes fu { from { opacity:0; transform: translateY(22px); } to { opacity:1; transform:none; } }
+@keyframes fi { from { opacity:0; } to { opacity:1; } }
+@keyframes bounce { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-7px); } }
+
+/* ── RESPONSIVE ── */
+@media (max-width:768px) {
+  #hdr { padding: 0 20px; }
+  nav.desk { display: none; }
+  .mbtn { display: flex; align-items: center; justify-content: center; }
+  #mnav a { padding: 15px 24px; }
+  .inn { padding: 0 20px; }
+  section { padding: 64px 0; }
+  .sinner { grid-template-columns: repeat(2,1fr); padding: 0 20px; }
+  .si:nth-child(2) { border-right: none; }
+  .pgrid { grid-template-columns: 1fr; }
+  .pw { grid-column: auto; }
+  .fgrid { grid-template-columns: repeat(2,1fr); }
+  .vgrid { grid-template-columns: 1fr; }
+}
+@media (max-width:480px) {
+  .fgrid { grid-template-columns: 1fr; }
+  .ht { font-size: 34px; }
+}
+@media (orientation:landscape) and (max-height:520px) {
+  #hero { min-height: auto; height: 160vw; }
+}
+</style>
+</head>
+<body>
+
+<!-- S-01 HEADER -->
+<header id="hdr">
+  <a href="#" class="logo">구로를<em>걷다</em></a>
+  <nav class="desk">
+    <a href="#route">코스 소개</a>
+    <a href="#places">장소</a>
+    <a href="#food">맛집</a>
+    <a href="#visit">가는 법</a>
+  </nav>
+  <button class="mbtn" id="mBtn" aria-label="메뉴 열기">☰</button>
+  <div id="mnav">
+    <a href="#route">코스 소개</a>
+    <a href="#places">장소</a>
+    <a href="#food">맛집</a>
+    <a href="#visit">가는 법</a>
+  </div>
+</header>
+
+<!-- S-02 HERO -->
+<section id="hero" data-screen-label="01 Hero">
+  <div id="hbg"></div>
+  <div class="hov"></div>
+  <div class="hcon">
+    <span class="hl">구로구 항동·오류동</span>
+    <h1 class="ht">숲에서 비우고<br>버들마을에서 채우다</h1>
+    <p class="hs">시간이 멈춘 철길과 6만 평의 숲<br>반나절 힐링 코스</p>
+    <div class="htags">
+      <span class="htag">#틈새힐링</span>
+      <span class="htag">#구로</span>
+      <span class="htag">#반나절코스</span>
+      <span class="htag">#2030추천</span>
+    </div>
+    <a href="#route" class="hcta">코스 보러가기 →</a>
+  </div>
+  <div class="shi"><span>↓ 스크롤</span></div>
+</section>
+
+<!-- STATS BAR -->
+<div class="sbar" data-screen-label="02 Stats">
+  <div class="sinner">
+    <div class="si">
+      <div class="sn"><span class="cnt" data-t="5">0</span><span class="su">곳</span></div>
+      <div class="sl">추천 장소</div>
+    </div>
+    <div class="si">
+      <div class="sn"><span class="cnt" data-t="5">0</span><span class="su">시간</span></div>
+      <div class="sl">총 소요 시간</div>
+    </div>
+    <div class="si">
+      <div class="sn"><span class="cnt" data-t="6">0</span><span class="su">만 평</span></div>
+      <div class="sl">수목원 규모</div>
+    </div>
+    <div class="si">
+      <div class="sn">약 <span class="cnt" data-t="2">0</span><span class="su">만원</span></div>
+      <div class="sl">1인 예상 비용</div>
+    </div>
+  </div>
+</div>
+
+<!-- S-04 ROUTE -->
+<section id="route" data-screen-label="03 Route">
+  <div class="inn">
+    <p class="ey">Course Route</p>
+    <h2 class="st">추천 동선</h2>
+    <p class="ss">항동·오류동을 잇는 다섯 곳, 총 5시간 코스</p>
+    <div class="rmap">
+      <svg viewBox="0 0 700 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="5개 장소 코스 동선 지도">
+        <rect width="700" height="310" fill="#152a1b"/>
+        <defs>
+          <pattern id="gdots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+            <circle cx="0.5" cy="0.5" r="0.9" fill="rgba(74,124,89,0.22)"/>
+          </pattern>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="4" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <rect width="700" height="310" fill="url(#gdots)"/>
+
+        <!-- route shadow -->
+        <path d="M 100,175 C 145,170 178,110 220,110 C 268,110 292,152 340,155 C 382,158 402,100 455,100 C 508,94 538,190 608,215"
+              stroke="rgba(74,124,89,0.25)" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <!-- route line -->
+        <path d="M 100,175 C 145,170 178,110 220,110 C 268,110 292,152 340,155 C 382,158 402,100 455,100 C 508,94 538,190 608,215"
+              stroke="rgba(196,162,74,0.55)" stroke-width="1.8" stroke-dasharray="7,5" fill="none" stroke-linecap="round"/>
+
+        <!-- transit 1→2 walk -->
+        <g transform="translate(157,126)">
+          <rect x="-24" y="-11" width="48" height="22" rx="11" fill="rgba(21,42,27,0.88)" stroke="rgba(74,124,89,0.5)" stroke-width="0.8"/>
+          <text x="0" y="5" font-size="9.5" fill="rgba(250,247,242,0.85)" text-anchor="middle" font-family="sans-serif">🚶 5분</text>
+        </g>
+        <!-- transit 2→3 walk -->
+        <g transform="translate(280,120)">
+          <rect x="-24" y="-11" width="48" height="22" rx="11" fill="rgba(21,42,27,0.88)" stroke="rgba(74,124,89,0.5)" stroke-width="0.8"/>
+          <text x="0" y="5" font-size="9.5" fill="rgba(250,247,242,0.85)" text-anchor="middle" font-family="sans-serif">🚶 5분</text>
+        </g>
+        <!-- transit 3→4 walk -->
+        <g transform="translate(397,112)">
+          <rect x="-28" y="-11" width="56" height="22" rx="11" fill="rgba(21,42,27,0.88)" stroke="rgba(74,124,89,0.5)" stroke-width="0.8"/>
+          <text x="0" y="5" font-size="9.5" fill="rgba(250,247,242,0.85)" text-anchor="middle" font-family="sans-serif">🚶 10분</text>
+        </g>
+        <!-- transit 4→5 bus -->
+        <g transform="translate(530,158)">
+          <rect x="-36" y="-11" width="72" height="22" rx="11" fill="rgba(40,28,8,0.9)" stroke="rgba(196,162,74,0.55)" stroke-width="0.8"/>
+          <text x="0" y="5" font-size="9.5" fill="rgba(250,247,242,0.92)" text-anchor="middle" font-family="sans-serif">🚌 버스 이동</text>
+        </g>
+
+        <!-- Pin 1 -->
+        <circle cx="100" cy="175" r="22" fill="rgba(74,124,89,0.15)" filter="url(#glow)"/>
+        <circle cx="100" cy="175" r="18" fill="#1a3422" stroke="rgba(74,124,89,0.6)" stroke-width="1.5"/>
+        <text x="100" y="180" font-size="11" fill="#c4a24a" text-anchor="middle" font-family="sans-serif" font-weight="bold">01</text>
+        <text x="100" y="207" font-size="10.5" fill="rgba(250,247,242,0.92)" text-anchor="middle" font-family="sans-serif">푸른수목원</text>
+        <text x="100" y="220" font-size="9" fill="rgba(74,124,89,0.95)" text-anchor="middle" font-family="sans-serif">약 2시간</text>
+
+        <!-- Pin 2 -->
+        <circle cx="220" cy="110" r="18" fill="#1a3422" stroke="rgba(74,124,89,0.6)" stroke-width="1.5"/>
+        <text x="220" y="115" font-size="11" fill="#c4a24a" text-anchor="middle" font-family="sans-serif" font-weight="bold">02</text>
+        <text x="220" y="142" font-size="10.5" fill="rgba(250,247,242,0.92)" text-anchor="middle" font-family="sans-serif">항동도서관</text>
+        <text x="220" y="155" font-size="9" fill="rgba(74,124,89,0.95)" text-anchor="middle" font-family="sans-serif">자유</text>
+
+        <!-- Pin 3 -->
+        <circle cx="340" cy="155" r="18" fill="#1a3422" stroke="rgba(74,124,89,0.6)" stroke-width="1.5"/>
+        <text x="340" y="160" font-size="11" fill="#c4a24a" text-anchor="middle" font-family="sans-serif" font-weight="bold">03</text>
+        <text x="340" y="187" font-size="10.5" fill="rgba(250,247,242,0.92)" text-anchor="middle" font-family="sans-serif">KB숲교육센터</text>
+        <text x="340" y="200" font-size="9" fill="rgba(74,124,89,0.95)" text-anchor="middle" font-family="sans-serif">약 15분</text>
+
+        <!-- Pin 4 -->
+        <circle cx="455" cy="100" r="18" fill="#1a3422" stroke="rgba(74,124,89,0.6)" stroke-width="1.5"/>
+        <text x="455" y="105" font-size="11" fill="#c4a24a" text-anchor="middle" font-family="sans-serif" font-weight="bold">04</text>
+        <text x="455" y="132" font-size="10.5" fill="rgba(250,247,242,0.92)" text-anchor="middle" font-family="sans-serif">항동철길</text>
+        <text x="455" y="145" font-size="9" fill="rgba(74,124,89,0.95)" text-anchor="middle" font-family="sans-serif">약 25분</text>
+
+        <!-- Pin 5 (final) -->
+        <circle cx="608" cy="215" r="24" fill="rgba(196,162,74,0.12)" filter="url(#glow)"/>
+        <circle cx="608" cy="215" r="20" fill="#1a3422" stroke="#c4a24a" stroke-width="2.5"/>
+        <text x="608" y="220" font-size="11" fill="#c4a24a" text-anchor="middle" font-family="sans-serif" font-weight="bold">05</text>
+        <text x="608" y="252" font-size="10.5" fill="rgba(250,247,242,0.95)" text-anchor="middle" font-family="sans-serif">오류버들마을</text>
+        <text x="608" y="265" font-size="9" fill="rgba(196,162,74,0.9)" text-anchor="middle" font-family="sans-serif">약 2시간 · 종점</text>
+
+        <!-- label -->
+        <rect x="12" y="280" width="130" height="22" rx="4" fill="rgba(9,18,11,0.8)" stroke="rgba(196,162,74,0.35)" stroke-width="0.8"/>
+        <text x="77" y="295" font-size="10.5" fill="rgba(196,162,74,0.9)" text-anchor="middle" font-family="sans-serif">총 약 5시간 코스</text>
+      </svg>
+    </div>
+  </div>
+  <noscript><ol style="padding:20px 48px;color:#e4e0da;line-height:2"><li>푸른수목원 (약 2시간)</li><li>항동푸른도서관 (자유)</li><li>KB숲교육센터 (약 15분)</li><li>항동철길 (약 25분)</li><li>오류버들마을 (약 2시간)</li></ol></noscript>
+</section>
+
+<!-- S-05 PLACES -->
+<section id="places" data-screen-label="04 Places">
+  <div class="inn">
+    <p class="ey">Places</p>
+    <h2 class="st">장소별 소개</h2>
+    <p class="ss">다섯 곳의 이야기, 하나의 코스</p>
+    <div class="pgrid">
+
+      <div class="pc" id="card-1">
+        <div class="pimg">🌳</div>
+        <div class="pb">
+          <span class="sbdg">STEP 01</span>
+          <h3 class="pn">푸른수목원</h3>
+          <p class="pd">⏱ 약 2시간 권장</p>
+          <p class="ph">도심 속 6만 평 오아시스. 계절마다 피어나는 자생식물과 연못·산책로가 어우러진 도시 숲.</p>
+          <div class="pt">💡 쓰레기통 없음 — 봉투 지참 필수</div>
+        </div>
+      </div>
+
+      <div class="pc" id="card-2">
+        <div class="pimg">📚</div>
+        <div class="pb">
+          <span class="sbdg">STEP 02</span>
+          <h3 class="pn">항동푸른도서관</h3>
+          <p class="pd">⏱ 자유롭게</p>
+          <p class="ph">숲 속에 파묻힌 특별한 독서 공간. 큐레이션 전시와 함께 잠시 쉬어가기 좋은 곳.</p>
+          <div class="pt">💡 1층 큐레이션 전시 꼭 확인</div>
+        </div>
+      </div>
+
+      <div class="pc" id="card-3">
+        <div class="pimg">🌿</div>
+        <div class="pb">
+          <span class="sbdg">STEP 03</span>
+          <h3 class="pn">KB숲교육센터</h3>
+          <p class="pd">⏱ 약 15분</p>
+          <p class="ph">유리온실 속 허브와 열대식물. 도심에서 만나는 소소한 식물원 감성의 힐링 공간.</p>
+          <div class="pt">💡 화장실·정수기 있어 중간 쉼터로 최적</div>
+        </div>
+      </div>
+
+      <div class="pc" id="card-4">
+        <div class="pimg">🚂</div>
+        <div class="pb">
+          <span class="sbdg">STEP 04</span>
+          <h3 class="pn">항동철길</h3>
+          <p class="pd">⏱ 약 25분</p>
+          <p class="ph">1959년 준공, 지금도 기차가 다니는 낭만 가득한 옛 철길. 시간이 멈춘 듯한 풍경.</p>
+          <div class="pt">💡 그늘 없음 — 양산·선크림 필수 / 킥보드 금지</div>
+        </div>
+      </div>
+
+      <div class="pc pw" id="card-5">
+        <div class="pimg" style="height:200px;">🍖</div>
+        <div class="pb">
+          <span class="sbdg">STEP 05 · FINAL</span>
+          <h3 class="pn">오류버들마을</h3>
+          <p class="pd">⏱ 약 2시간 (자유 탐방)</p>
+          <p class="ph">구로구의 숨은 로컬 브랜드 성지. 골목마다 개성 넘치는 맛집과 공방이 자리잡고 있다.</p>
+          <div class="pt">💡 골목별로 분산되어 있으니 여유 있게 탐방</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- S-06 FOOD -->
+<section id="food" data-screen-label="05 Food">
+  <div class="inn">
+    <p class="ey">Food</p>
+    <h2 class="st">맛집 &amp; 먹거리</h2>
+    <p class="ss">오류버들마을 대표 메뉴 — 카드에 마우스를 올려 뒤집어보세요</p>
+    <div class="fgrid">
+      <div class="fc" tabindex="0">
+        <div class="fci">
+          <div class="ff"><div class="fe">🥣</div><div class="fname">감자옹심이</div></div>
+          <div class="fb"><div class="fbn">감자옹심이</div><p class="fdesc">강원도식 수제 감자 수제비. 걸쭉하고 구수한 국물이 일품인 버들마을 대표 메뉴.</p></div>
+        </div>
+      </div>
+      <div class="fc" tabindex="0">
+        <div class="fci">
+          <div class="ff"><div class="fe">🍔</div><div class="fname">수제버거</div></div>
+          <div class="fb"><div class="fbn">수제버거</div><p class="fdesc">두툼한 수제 패티와 신선한 재료. 버들마을에서 떠오른 로컬 브랜드 크래프트 버거.</p></div>
+        </div>
+      </div>
+      <div class="fc" tabindex="0">
+        <div class="fci">
+          <div class="ff"><div class="fe">🍗</div><div class="fname">통닭</div></div>
+          <div class="fb"><div class="fbn">통닭</div><p class="fdesc">골목 현지인 단골 맛집의 바삭한 튀김닭. 오랜 세월이 만든 로컬 치킨의 정석.</p></div>
+        </div>
+      </div>
+      <div class="fc" tabindex="0">
+        <div class="fci">
+          <div class="ff"><div class="fe">🍲</div><div class="fname">부대찌개</div></div>
+          <div class="fb"><div class="fbn">부대찌개</div><p class="fdesc">뚝배기 가득 얼큰한 국물. 철길 걷고 나서 허기를 달래기 딱 좋은 든든한 한 끼.</p></div>
+        </div>
+      </div>
+      <div class="fc" tabindex="0">
+        <div class="fci">
+          <div class="ff"><div class="fe">☕</div><div class="fname">브런치카페</div></div>
+          <div class="fb"><div class="fbn">브런치카페</div><p class="fdesc">빈티지 감성 공간에서 즐기는 여유로운 브런치. 사진 찍기 좋은 인테리어도 포인트.</p></div>
+        </div>
+      </div>
+      <div class="fc" tabindex="0">
+        <div class="fci">
+          <div class="ff"><div class="fe">🥐</div><div class="fname">빵·베이커리</div></div>
+          <div class="fb"><div class="fbn">빵·베이커리</div><p class="fdesc">매일 굽는 수제 빵과 정성 담긴 커피. 산책 후 달콤한 마무리로 딱 맞는 골목 베이커리.</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="fnote">※ 오류버들마을은 골목 특성상 가게가 분산되어 있습니다.<br>지도 앱으로 사전 확인 후 방문을 권장드립니다.</p>
+  </div>
+</section>
+
+<!-- S-07 VISIT -->
+<section id="visit" data-screen-label="06 Visit">
+  <div class="inn">
+    <p class="ey">Visit Info</p>
+    <h2 class="st">방문 정보</h2>
+    <p class="ss">코스를 더 즐겁게 즐기기 위한 필수 정보</p>
+    <div class="vgrid">
+      <div class="vb">
+        <div class="vic">🚌</div>
+        <h3>교통 안내</h3>
+        <ul>
+          <li>지하철 1·7호선 온수역 하차</li>
+          <li>버스 정류장: 항동지구 방향 이용</li>
+          <li>도보 이동 구간 多 — 편한 신발 필수</li>
+          <li>철길→버들마을 구간 버스 이용</li>
+        </ul>
+      </div>
+      <div class="vb">
+        <div class="vic">⚠️</div>
+        <h3>주의사항</h3>
+        <ul>
+          <li>수목원 내 쓰레기통 없음</li>
+          <li>항동철길 킥보드·자전거 금지</li>
+          <li>철길 구간 그늘 없음 (양산 필수)</li>
+          <li>버들마을 가게별 영업일 사전 확인</li>
+        </ul>
+      </div>
+      <div class="vb">
+        <div class="vic">💰</div>
+        <h3>예상 비용</h3>
+        <ul>
+          <li>수목원·도서관·철길 무료</li>
+          <li>KB숲교육센터 무료</li>
+          <li>식사·카페 약 1~2만원</li>
+        </ul>
+        <div class="vtot">1인 약 2만원</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S-09 FOOTER -->
+<footer data-screen-label="07 Footer">
+  <div class="flogo">구로를<em>걷다</em></div>
+  <p class="fmeta">구로 지역 현장답사 결과 발표 · GLOWIDE<br>이혜민</p>
+  <p class="fcopy">© 2026 구로를 걷다. All rights reserved.</p>
+  <button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ 맨 위로</button>
+</footer>
+
+<script>
+// Header
+const hdr = document.getElementById('hdr');
+const mBtn = document.getElementById('mBtn');
+const mnav = document.getElementById('mnav');
+window.addEventListener('scroll', () => hdr.classList.toggle('on', window.scrollY > 0));
+mBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  const o = mnav.classList.toggle('open');
+  mBtn.textContent = o ? '✕' : '☰';
+  mBtn.setAttribute('aria-label', o ? '메뉴 닫기' : '메뉴 열기');
+});
+document.addEventListener('click', e => {
+  if (!hdr.contains(e.target)) { mnav.classList.remove('open'); mBtn.textContent = '☰'; }
+});
+mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mnav.classList.remove('open'); mBtn.textContent = '☰'; }));
+
+// Smooth scroll polyfill
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const t = document.querySelector(this.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+// Parallax (desktop only)
+const heroBg = document.getElementById('hbg');
+const heroEl = document.getElementById('hero');
+if (!/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY < heroEl.offsetHeight + 100)
+      heroBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+  }, { passive: true });
+}
+
+// Counter
+let counted = false;
+new IntersectionObserver(([e]) => {
+  if (e.isIntersecting && !counted) {
+    counted = true;
+    document.querySelectorAll('.cnt').forEach(el => {
+      const t = +el.dataset.t; let n = 0;
+      const id = setInterval(() => {
+        n = Math.min(n + Math.max(1, Math.floor(t / 20)), t);
+        el.textContent = n;
+        if (n >= t) clearInterval(id);
+      }, 55);
+    });
+  }
+}, { threshold: 0.6 }).observe(document.querySelector('.sbar'));
+
+// Place cards fade-in
+const pcards = [...document.querySelectorAll('.pc')];
+new IntersectionObserver((entries, obs) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const i = pcards.indexOf(e.target);
+      setTimeout(() => e.target.classList.add('in'), i * 100);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 }).observe(document.getElementById('places'));
+// observe individually after section is in view
+const sectionObs = new IntersectionObserver(([e], obs) => {
+  if (e.isIntersecting) {
+    pcards.forEach((c, i) => setTimeout(() => c.classList.add('in'), i * 100));
+    obs.unobserve(e.target);
+  }
+}, { threshold: 0.05 });
+sectionObs.observe(document.getElementById('places'));
+
+// Food & Visit fade-in
+['#food', '#visit'].forEach(sel => {
+  const section = document.querySelector(sel);
+  if (!section) return;
+  const children = [...section.querySelectorAll('.fc, .vb')];
+  children.forEach(el => Object.assign(el.style, { opacity:'0', transform:'translateY(20px)', transition:'opacity .5s ease, transform .5s ease' }));
+  new IntersectionObserver(([e], obs) => {
+    if (e.isIntersecting) {
+      children.forEach((el, i) => setTimeout(() => Object.assign(el.style, { opacity:'1', transform:'none' }), i * 75));
+      obs.unobserve(section);
+    }
+  }, { threshold: 0.08 }).observe(section);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>구로를 걷다 — 디자인 방향 선택</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #0e1a11;
+  color: #e4e0da;
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 48px 24px;
+  -webkit-font-smoothing: antialiased;
+}
+.top { text-align: center; margin-bottom: 64px; }
+.kicker { font-size: 12px; font-weight: 500; color: #c4a24a; letter-spacing: .22em; text-transform: uppercase; margin-bottom: 20px; }
+.kicker::before, .kicker::after { content: '—'; margin: 0 10px; opacity: .5; }
+h1 { font-family: 'Black Han Sans', sans-serif; font-size: clamp(30px,5vw,56px); color: #faf7f2; line-height: 1.1; margin-bottom: 16px; }
+.sub { font-size: 15px; font-weight: 300; color: rgba(228,224,218,.55); line-height: 1.7; }
+
+.cards { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; max-width: 960px; width: 100%; }
+
+.card {
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(74,124,89,.2);
+  text-decoration: none; color: inherit;
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+  display: flex; flex-direction: column;
+}
+.card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,.5); border-color: rgba(196,162,74,.4); }
+
+.card-preview {
+  height: 280px; position: relative; overflow: hidden;
+  display: flex; align-items: flex-end;
+}
+.card-preview-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+}
+.card-a .card-preview-bg {
+  background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=70');
+  filter: brightness(.45) saturate(.9);
+}
+.card-b .card-preview-bg {
+  background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=70');
+  filter: brightness(.65) saturate(1.1);
+}
+.card-b .card-preview-bg::after {
+  content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 45%;
+  background: #faf7f2;
+}
+.card-a .card-preview-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(9,18,11,.85) 0%, rgba(9,18,11,.2) 60%);
+}
+.preview-label {
+  position: relative; z-index: 1; padding: 20px 24px; width: 100%;
+}
+.card-a .preview-label .plname {
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 28px; color: #faf7f2; line-height: 1.1;
+}
+.card-a .preview-label .plsub { font-size: 13px; color: rgba(250,247,242,.55); margin-top: 4px; }
+.card-b .preview-label { color: #1a3a1f; }
+.card-b .preview-label .plname { font-family: 'Black Han Sans', sans-serif; font-size: 28px; color: #1a3a1f; }
+.card-b .preview-label .plsub { font-size: 13px; color: #6b7a6e; margin-top: 4px; }
+
+.card-body {
+  padding: 28px 28px 32px;
+  flex: 1; display: flex; flex-direction: column; gap: 16px;
+}
+.card-a .card-body { background: #19291e; }
+.card-b .card-body { background: #ffffff; }
+
+.card-tag {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase; padding: 4px 12px;
+  border-radius: 100px;
+}
+.card-a .card-tag { color: #c4a24a; border: 1px solid rgba(196,162,74,.35); background: rgba(196,162,74,.07); }
+.card-b .card-tag { color: #4a7c59; border: 1px solid rgba(74,124,89,.3); background: rgba(74,124,89,.07); }
+
+.card-desc { font-size: 14px; line-height: 1.75; flex: 1; }
+.card-a .card-desc { color: rgba(228,224,218,.65); }
+.card-b .card-desc { color: #6b7a6e; }
+
+.card-features { display: flex; flex-direction: column; gap: 8px; }
+.feat { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+.card-a .feat { color: rgba(228,224,218,.55); }
+.card-b .feat { color: #6b7a6e; }
+.feat-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.card-a .feat-dot { background: #4a7c59; }
+.card-b .feat-dot { background: #c4a24a; }
+
+.card-btn {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px; border-radius: 6px;
+  font-family: 'Black Han Sans', sans-serif; font-size: 14px;
+  margin-top: 4px;
+  transition: transform .2s;
+}
+.card:hover .card-btn { transform: translateX(4px); }
+.card-a .card-btn { background: #c4a24a; color: #0e1a11; }
+.card-b .card-btn { background: #1a3a1f; color: #faf7f2; }
+
+.footer-note {
+  margin-top: 48px; text-align: center;
+  font-size: 13px; color: rgba(228,224,218,.3);
+}
+
+@media (max-width: 640px) {
+  .cards { grid-template-columns: 1fr; }
+  .card-preview { height: 220px; }
+  h1 { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <p class="kicker">구로 관광 홈페이지</p>
+  <h1>두 가지 방향을<br>골라보세요</h1>
+  <p class="sub">같은 콘텐츠, 다른 감각 — 아래 카드를 클릭해 각 방향을 확인하세요</p>
+</div>
+
+<div class="cards">
+
+  <a href="구로를 걷다 - A.html" class="card card-a">
+    <div class="card-preview">
+      <div class="card-preview-bg"></div>
+      <div class="preview-label">
+        <div class="plname">숲에서 비우고<br>버들마을에서 채우다</div>
+        <div class="plsub">Direction A</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <span class="card-tag">A — Dark Forest</span>
+      <p class="card-desc">짙은 포레스트 그린 기반의 감각적 에디토리얼. 강렬한 명암 대비와 풀블리드 이미지, 골드 포인트가 어우러지는 야간 매거진 무드.</p>
+      <div class="card-features">
+        <div class="feat"><span class="feat-dot"></span>패럴랙스 히어로 + 숫자 카운터 애니메이션</div>
+        <div class="feat"><span class="feat-dot"></span>SVG 동선 지도 (글로우 핀 · 베지어 경로)</div>
+        <div class="feat"><span class="feat-dot"></span>맛집 카드 3D 플립 인터랙션</div>
+        <div class="feat"><span class="feat-dot"></span>카드 순차 페이드인 · 다크 그라디언트 배경</div>
+      </div>
+      <div class="card-btn">Direction A 보러가기 <span>→</span></div>
+    </div>
+  </a>
+
+  <a href="구로를 걷다 - B.html" class="card card-b">
+    <div class="card-preview">
+      <div class="card-preview-bg"></div>
+      <div class="preview-label">
+        <div class="plname">숲에서 비우고<br>버들마을에서 채우다</div>
+        <div class="plsub">Direction B</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <span class="card-tag">B — Cream Magazine</span>
+      <p class="card-desc">크림 화이트 기반의 신선한 매거진 레이아웃. 스플릿 히어로와 교차 배치 장소 카드가 만드는 리듬감 있는 독자 경험.</p>
+      <div class="card-features">
+        <div class="feat"><span class="feat-dot"></span>스플릿 히어로 (이미지 좌·텍스트 우)</div>
+        <div class="feat"><span class="feat-dot"></span>수평 스텝퍼 동선 (골드 핀 · 도보/버스 구분)</div>
+        <div class="feat"><span class="feat-dot"></span>교차 배치 장소 매거진 레이아웃</div>
+        <div class="feat"><span class="feat-dot"></span>다크 그린 섹션 대비 · 슬라이드인 애니메이션</div>
+      </div>
+      <div class="card-btn">Direction B 보러가기 <span>→</span></div>
+    </div>
+  </a>
+
+</div>
+
+<p class="footer-note">구로 관광 홈페이지 · 이혜민 · GLOWIDE · 2026</p>
+
+</body>
+</html>

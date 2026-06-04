@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-Command node, npm, npx 2>$null | Select-Object Name, Source; [System.Environment]::GetEnvironmentVariable\\(\"Path\", \"Machine\"\\) -split \";\" | Where-Object { $_ -match \"node\" })",
+      "PowerShell($env:Path -split \";\" | Where-Object { $_ -match \"node|npm\" }; ls \"C:\\\\Program Files\\\\nodejs\" -ErrorAction SilentlyContinue; ls \"C:\\\\Program Files \\(x86\\)\\\\nodejs\" -ErrorAction SilentlyContinue; ls \"$env:APPDATA\\\\npm\" -ErrorAction SilentlyContinue)",
+      "PowerShell(ls \"C:\\\\Program Files\" | Where-Object { $_.Name -match \"node|npm\" })",
+      "PowerShell(python --version 2>$null)",
+      "PowerShell(python3 --version 2>$null)",
+      "PowerShell(Start-Process \"C:\\\\Users\\\\admin\\\\Desktop\\\\guro\\\\index.html\")"
+    ]
+  }
+}

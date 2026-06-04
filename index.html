@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>구로를 걷다 — 숲에서 비우고 버들마을에서 채우다</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="구로구 항동·오류동 반나절 힐링 코스. 6만 평 수목원, 시간이 멈춘 철길, 오류버들마을 로컬 맛집을 5시간에 즐기는 코스 안내.">
+  <meta name="keywords" content="구로구, 구로 관광, 푸른수목원, 항동철길, 오류버들마을, 서울 힐링코스, 서울 여행">
+  <meta name="author" content="이혜민 (GLOWIDE)">
+
+  <!-- Open Graph / Kakao & Instagram Share Preview -->
+  <meta property="og:title" content="구로를 걷다 — 숲에서 비우고 버들마을에서 채우다">
+  <meta property="og:description" content="구로구 항동·오류동 반나절 힐링 코스. 6만 평 숲, 시간이 멈춘 철길, 오류버들마을 로컬 맛집 투어.">
+  <meta property="og:image" content="images/og-preview.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://glowide.github.io/guro-walk">
+
+  <!-- Favicon (🌳 SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌳</text></svg>">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Script -->
+  <script src="js/app.js" defer></script>
+</head>
+<body class="theme-light">
+
+  <!-- S-01 HEADER & NAVIGATION -->
+  <header id="hdr">
+    <a href="#" class="logo">구로를<em>걷다</em></a>
+    <div class="header-right">
+      <nav class="desk">
+        <a href="#route">코스 소개</a>
+        <a href="#places">장소</a>
+        <a href="#food">맛집</a>
+        <a href="#visit">가는 법</a>
+      </nav>
+      <!-- Theme switcher for desktop -->
+      <button class="theme-toggle-btn" aria-label="다크 모드로 변경" title="다크 모드로 변경">🌙</button>
+      <!-- Mobile toggle menu button -->
+      <button class="mbtn" id="mBtn" aria-label="메뉴 열기">☰</button>
+    </div>
+    
+    <!-- Mobile dropdown menu -->
+    <div id="mnav">
+      <a href="#route">코스 소개</a>
+      <a href="#places">장소</a>
+      <a href="#food">맛집</a>
+      <a href="#visit">가는 법</a>
+      <div class="mobile-theme-row">
+        <span>화면 테마 설정</span>
+        <button class="theme-toggle-btn" aria-label="테마 변경">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- S-02 HERO SECTION -->
+  <section id="hero">
+    <div class="hphoto">
+      <div id="hbg"></div>
+    </div>
+    <div class="hov"></div>
+    <div class="hpanel">
+      <div class="hcon">
+        <span class="hl">구로구 항동·오류동</span>
+        <h1 class="ht">숲에서 비우고<br><em>버들마을에서 채우다</em></h1>
+        <p class="hs">시간이 멈춘 철길과 6만 평의 숲<br>일상의 소음을 비워내는 반나절 힐링 코스</p>
+        <div class="htags">
+          <span class="htag">#틈새힐링</span>
+          <span class="htag">#구로구</span>
+          <span class="htag">#반나절코스</span>
+          <span class="htag">#2030추천</span>
+        </div>
+        <div class="hero-btns">
+          <a href="#route" class="hcta">코스 보러가기 →</a>
+          <button id="quiz-start-btn" class="hcta secondary-cta">🔍 나의 성향 분석하기</button>
+        </div>
+        <span class="hgold"></span>
+      </div>
+    </div>
+    <div class="shi"><span>↓ 스크롤</span></div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="sbar">
+    <div class="sinner">
+      <div class="si">
+        <div class="sn"><span class="cnt" data-t="5">0</span><span class="su">곳</span></div>
+        <div class="sl">추천 장소</div>
+      </div>
+      <div class="si">
+        <div class="sn"><span class="cnt" data-t="5">0</span><span class="su">시간</span></div>
+        <div class="sl">총 소요 시간</div>
+      </div>
+      <div class="si">
+        <div class="sn"><span class="cnt" data-t="6">0</span><span class="su">만 평</span></div>
+        <div class="sl">수목원 규모</div>
+      </div>
+      <div class="si">
+        <div class="sn">약 <span class="cnt" data-t="2">0</span><span class="su">만원</span></div>
+        <div class="sl">1인 예상 비용</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S-04 COURSE ROUTE -->
+  <section id="route">
+    <div class="inn">
+      <p class="ey">Course Route</p>
+      <h2 class="st">추천 동선</h2>
+      <p class="ss">항동과 오류동을 유기적으로 잇는 다섯 곳, 총 5시간 코스</p>
+      
+      <!-- Interactive SVG map -->
+      <div class="rmap">
+        <svg viewBox="0 0 700 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="5개 장소 코스 동선 지도">
+          <rect width="700" height="310" class="map-bg"/>
+          <defs>
+            <pattern id="gdots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+              <circle cx="0.5" cy="0.5" r="0.9"/>
+            </pattern>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="4" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="rgba(26,58,31,0.12)"/>
+            </filter>
+          </defs>
+          <rect width="700" height="310" fill="url(#gdots)"/>
+
+          <!-- route shadow path -->
+          <path d="M 100,175 C 145,170 178,110 220,110 C 268,110 292,152 340,155 C 382,158 402,100 455,100 C 508,94 538,190 608,215"
+                stroke-width="5" fill="none" stroke-linecap="round" class="route-shadow"/>
+          <!-- route dash path -->
+          <path d="M 100,175 C 145,170 178,110 220,110 C 268,110 292,152 340,155 C 382,158 402,100 455,100 C 508,94 538,190 608,215"
+                stroke-width="1.8" stroke-dasharray="7,5" fill="none" stroke-linecap="round" class="route-line"/>
+
+          <!-- transit 1→2 walk -->
+          <g transform="translate(157,126)" class="transit-rect">
+            <rect x="-24" y="-11" width="48" height="22" rx="11" stroke-width="0.8"/>
+            <text x="0" y="5" font-size="9.5" text-anchor="middle" font-family="sans-serif">🚶 5분</text>
+          </g>
+          <!-- transit 2→3 walk -->
+          <g transform="translate(280,120)" class="transit-rect">
+            <rect x="-24" y="-11" width="48" height="22" rx="11" stroke-width="0.8"/>
+            <text x="0" y="5" font-size="9.5" text-anchor="middle" font-family="sans-serif">🚶 5분</text>
+          </g>
+          <!-- transit 3→4 walk -->
+          <g transform="translate(397,112)" class="transit-rect">
+            <rect x="-28" y="-11" width="56" height="22" rx="11" stroke-width="0.8"/>
+            <text x="0" y="5" font-size="9.5" text-anchor="middle" font-family="sans-serif">🚶 10분</text>
+          </g>
+          <!-- transit 4→5 bus -->
+          <g transform="translate(530,158)" class="transit-bus">
+            <rect x="-36" y="-11" width="72" height="22" rx="11" stroke-width="0.8"/>
+            <text x="0" y="5" font-size="9.5" text-anchor="middle" font-family="sans-serif">🚌 버스 이동</text>
+          </g>
+
+          <!-- Pin 1 -->
+          <a href="#card-1">
+            <g class="pin-group" id="pin-1" style="cursor: pointer;">
+              <circle cx="100" cy="175" r="22" class="glow-ring"/>
+              <circle cx="100" cy="175" r="18" class="pin-base"/>
+              <text x="100" y="180" font-size="11" text-anchor="middle" font-family="sans-serif" font-weight="bold" class="pin-num">01</text>
+              <text x="100" y="207" font-size="10.5" text-anchor="middle" font-family="sans-serif" font-weight="500" class="pin-name">푸른수목원</text>
+              <text x="100" y="220" font-size="9" text-anchor="middle" font-family="sans-serif" class="pin-dur">약 2시간</text>
+            </g>
+          </a>
+
+          <!-- Pin 2 -->
+          <a href="#card-2">
+            <g class="pin-group" id="pin-2" style="cursor: pointer;">
+              <circle cx="220" cy="110" r="18" class="pin-base"/>
+              <text x="220" y="115" font-size="11" text-anchor="middle" font-family="sans-serif" font-weight="bold" class="pin-num">02</text>
+              <text x="220" y="142" font-size="10.5" text-anchor="middle" font-family="sans-serif" font-weight="500" class="pin-name">항동도서관</text>
+              <text x="220" y="155" font-size="9" text-anchor="middle" font-family="sans-serif" class="pin-dur">자유</text>
+            </g>
+          </a>
+
+          <!-- Pin 3 -->
+          <a href="#card-3">
+            <g class="pin-group" id="pin-3" style="cursor: pointer;">
+              <circle cx="340" cy="155" r="18" class="pin-base"/>
+              <text x="340" y="160" font-size="11" text-anchor="middle" font-family="sans-serif" font-weight="bold" class="pin-num">03</text>
+              <text x="340" y="187" font-size="10.5" text-anchor="middle" font-family="sans-serif" font-weight="500" class="pin-name">KB숲교육센터</text>
+              <text x="340" y="200" font-size="9" text-anchor="middle" font-family="sans-serif" class="pin-dur">약 15분</text>
+            </g>
+          </a>
+
+          <!-- Pin 4 -->
+          <a href="#card-4">
+            <g class="pin-group" id="pin-4" style="cursor: pointer;">
+              <circle cx="455" cy="100" r="18" class="pin-base"/>
+              <text x="455" y="105" font-size="11" text-anchor="middle" font-family="sans-serif" font-weight="bold" class="pin-num">04</text>
+              <text x="455" y="132" font-size="10.5" text-anchor="middle" font-family="sans-serif" font-weight="500" class="pin-name">항동철길</text>
+              <text x="455" y="145" font-size="9" text-anchor="middle" font-family="sans-serif" class="pin-dur">약 25분</text>
+            </g>
+          </a>
+
+          <!-- Pin 5 (final) -->
+          <a href="#card-5">
+            <g class="pin-group" id="pin-5" style="cursor: pointer;">
+              <circle cx="608" cy="215" r="24" class="glow-ring"/>
+              <circle cx="608" cy="215" r="20" class="pin-base-gold" stroke-width="2.5"/>
+              <text x="608" y="220" font-size="11" text-anchor="middle" font-family="sans-serif" font-weight="bold" class="pin-num">05</text>
+              <text x="608" y="252" font-size="10.5" text-anchor="middle" font-family="sans-serif" font-weight="500" class="pin-name">오류버들마을</text>
+              <text x="608" y="265" font-size="9" text-anchor="middle" font-family="sans-serif" class="pin-dur">약 2시간 · 종점</text>
+            </g>
+          </a>
+
+          <!-- bottom total tag label -->
+          <rect x="12" y="280" width="130" height="22" rx="4" stroke-width="0.8" class="label-bg"/>
+          <text x="77" y="295" font-size="10.5" text-anchor="middle" font-family="sans-serif" font-weight="bold" class="label-text">총 약 5시간 코스</text>
+          
+          <!-- Walker Avatar for Simulation -->
+          <g id="walker-avatar" style="offset-distance: 0%; display: none;">
+            <circle cx="0" cy="0" r="14" fill="#c4a24a" stroke="#ffffff" stroke-width="1.5" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35));"/>
+            <text x="0" y="4" font-size="12" text-anchor="middle" font-family="sans-serif">🚶</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Walking Simulator Panel -->
+      <div class="sim-panel">
+        <div class="sim-header">
+          <span class="sim-icon">🚶</span>
+          <h4>코스 모의 걷기 시뮬레이터</h4>
+          <p>지도를 따라 반나절 코스를 미리 걷고 칼로리를 소모해 보세요!</p>
+        </div>
+        <div class="sim-body">
+          <div class="sim-controls">
+            <button id="sim-play-btn" class="sim-btn">▶ 모의 걷기 시작</button>
+            <button id="sim-reset-btn" class="sim-btn secondary">초기화</button>
+          </div>
+          <div class="sim-stats">
+            <div class="sim-stat-card">
+              <div class="sim-stat-lbl">👣 걸음 수</div>
+              <div class="sim-stat-val"><span id="sim-steps">0</span> 걸음</div>
+            </div>
+            <div class="sim-stat-card">
+              <div class="sim-stat-lbl">🔥 소모 칼로리</div>
+              <div class="sim-stat-val"><span id="sim-cal">0</span> kcal</div>
+            </div>
+            <div class="sim-stat-card">
+              <div class="sim-stat-lbl">📍 현재 위치</div>
+              <div class="sim-stat-val" id="sim-loc">대기 중</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <noscript>
+        <ol style="padding: 20px 48px; line-height: 2;">
+          <li>푸른수목원 (약 2시간)</li>
+          <li>항동푸른도서관 (자유)</li>
+          <li>KB숲교육센터 (약 15분)</li>
+          <li>항동철길 (약 25분)</li>
+          <li>오류버들마을 (약 2시간)</li>
+        </ol>
+      </noscript>
+    </div>
+  </section>
+
+  <!-- S-05 PLACES SECTION -->
+  <section id="places">
+    <div class="inn">
+      <p class="ey">Places</p>
+      <h2 class="st">장소별 소개</h2>
+      <p class="ss">숲에서 시작해 마을 골목에 이르는 다섯 조각의 이야기</p>
+      
+      <!-- Places Container (will change layouts dynamically via CSS based on active theme) -->
+      <div class="places-layout">
+        
+        <!-- STEP 01 -->
+        <article class="pc" id="card-1">
+          <div class="pimg">
+            <img src="images/place-1.jpg" alt="푸른수목원 수생식물원 전경" loading="lazy">
+          </div>
+          <div class="pb">
+            <span class="sbdg">STEP 01</span>
+            <h3 class="pn">푸른수목원</h3>
+            <p class="pd">⏱ 약 2시간 권장</p>
+            <p class="ph">서울시 최초로 조성된 6만 평 규모의 시립 수목원. 넓은 푸른 잔디광장, 고요한 수생식물원 수변 데크, 향긋한 장미원이 어우러져 도심 속 진정한 쉼표를 선물합니다.</p>
+            <div class="pt">💡 수목원 내 쓰레기통 없음 — 개인 쓰레기 봉투 지참 필수</div>
+          </div>
+        </article>
+
+        <!-- STEP 02 -->
+        <article class="pc" id="card-2">
+          <div class="pimg">
+            <img src="images/place-2.jpg" alt="항동도서관 안락한 서재 공간" loading="lazy">
+          </div>
+          <div class="pb">
+            <span class="sbdg">STEP 02</span>
+            <h3 class="pn">항동푸른도서관</h3>
+            <p class="pd">⏱ 자유롭게 탐방</p>
+            <p class="ph">수목원의 자락에 사뿐히 들어앉아 자연 조망을 담아낸 특별한 문화 공간. 큰 창 너머 초록 잎사귀들을 바라보며, 조용히 큐레이션된 책을 넘기는 고요의 미학을 체험해보세요.</p>
+            <div class="pt">💡 1층에 상시 기획되는 북큐레이션 테마 전시 꼭 확인</div>
+          </div>
+        </article>
+
+        <!-- STEP 03 -->
+        <article class="pc" id="card-3">
+          <div class="pimg">
+            <img src="images/place-3.jpg" alt="KB숲교육센터 유리온실 내부" loading="lazy">
+          </div>
+          <div class="pb">
+            <span class="sbdg">STEP 03</span>
+            <h3 class="pn">KB숲교육센터</h3>
+            <p class="pd">⏱ 약 15분</p>
+            <p class="ph">이국적인 유리온실 속에서 따뜻하게 자라나는 다채로운 허브식물과 아열대 식물들을 관찰할 수 있는 아담한 온실 공간. 촉촉한 공기와 식물 냄새가 편안함을 선사합니다.</p>
+            <div class="pt">💡 깔끔한 화장실과 아늑한 쉼터가 구비되어 중간 휴식처로 최적</div>
+          </div>
+        </article>
+
+        <!-- STEP 04 -->
+        <article class="pc" id="card-4">
+          <div class="pimg">
+            <img src="images/place-4.jpg" alt="낭만 가득한 옛 항동철길" loading="lazy">
+          </div>
+          <div class="pb">
+            <span class="sbdg">STEP 04</span>
+            <h3 class="pn">항동철길</h3>
+            <p class="pd">⏱ 약 25분</p>
+            <p class="ph">1959년 준공되어 화물 열차가 오가던 흔적이 고스란히 남아 있는 낭만적인 옛 단선 철도. 레일 양쪽으로 우거진 수풀 사잇길을 조용히 걸으며 정취 있는 인생 사진을 남겨보세요.</p>
+            <div class="pt">💡 그늘이 거의 없어 모자·양산 필수 | 보행자 안전을 위해 자전거/킥보드 금지</div>
+          </div>
+        </article>
+
+        <!-- STEP 05 (FINAL) -->
+        <article class="pc pw" id="card-5">
+          <div class="pimg">
+            <img src="images/place-5.jpg" alt="오류버들마을 로컬 골목 풍경" loading="lazy">
+          </div>
+          <div class="pb">
+            <span class="sbdg">STEP 05 · FINAL</span>
+            <h3 class="pn">오류버들마을</h3>
+            <p class="pd">⏱ 약 2시간 이상 (식사 및 카페)</p>
+            <p class="ph">시간이 머문 듯한 정겨운 골목길 사이마다 젊은 기획자들의 손길이 닿은 힙한 로컬 맛집들과 아기자기한 동네 공방, 브런치 카페들이 숨바꼭질하듯 분산되어 매력을 뿜어내는 로컬 브랜드 성지입니다.</p>
+            <div class="pt">💡 정겨운 상점가들이 여러 갈래 골목길에 넓게 퍼져 있어 여유로운 도보 탐색을 추천</div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- S-06 FOOD & DINING SECTION -->
+  <section id="food">
+    <div class="inn">
+      <p class="ey">Food</p>
+      <h2 class="st">맛집 &amp; 먹거리</h2>
+      <p class="ss">오류버들마을이 자랑하는 대표 로컬 메뉴 여섯 가지 (다크 테마에서는 마우스를 올려 뒤집어보세요)</p>
+      
+      <!-- Menu Roulette Section -->
+      <div class="roulette-section">
+        <div class="roulette-box">
+          <div class="roulette-container">
+            <div class="roulette-wheel" id="roulette-wheel">
+              <div class="roulette-slice" style="--i:0;"><div class="roulette-slice-inner">🥣 옹심이</div></div>
+              <div class="roulette-slice" style="--i:1;"><div class="roulette-slice-inner">🍔 수제버거</div></div>
+              <div class="roulette-slice" style="--i:2;"><div class="roulette-slice-inner">🍗 옛날통닭</div></div>
+              <div class="roulette-slice" style="--i:3;"><div class="roulette-slice-inner">🍲 부대찌개</div></div>
+              <div class="roulette-slice" style="--i:4;"><div class="roulette-slice-inner">☕ 브런치</div></div>
+              <div class="roulette-slice" style="--i:5;"><div class="roulette-slice-inner">🥐 베이커리</div></div>
+            </div>
+            <div class="roulette-pointer">▼</div>
+          </div>
+          <button id="roulette-spin-btn" class="roulette-btn">🎪 오늘의 메뉴 추천받기</button>
+        </div>
+        
+        <div class="roulette-result" id="roulette-result" style="display: none;">
+          <div class="result-content">
+            <span class="result-emoji" id="result-emoji">🍔</span>
+            <h4 class="result-name">오늘의 추천 메뉴: <span id="result-text">수제버거</span></h4>
+            <p class="result-desc" id="result-desc">두툼한 패티와 버들마을 로컬 감성을 가득 품은 맛집으로 떠나볼까요?</p>
+            <a href="#food" id="result-scroll-btn" class="result-link">상세 소개 위치로 이동 👇</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Food cards grid -->
+      <div class="fgrid">
+        
+        <!-- 1. 감자옹심이 -->
+        <div class="fc" tabindex="0">
+          <div class="fci">
+            <div class="ff">
+              <div class="fe">🥣</div>
+              <div class="fname">감자옹심이</div>
+            </div>
+            <div class="fb">
+              <div class="fbn">감자옹심이</div>
+              <p class="fdesc">강원도식 전통 비법으로 빚어낸 쫄깃하고 투명한 감자 수제비. 걸쭉하고 고소한 메밀 들깨 국물이 걷느라 지친 속을 뜨끈하게 채워줍니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 수제버거 -->
+        <div class="fc" tabindex="0">
+          <div class="fci">
+            <div class="ff">
+              <div class="fe">🍔</div>
+              <div class="fname">수제버거</div>
+            </div>
+            <div class="fb">
+              <div class="fbn">수제버거</div>
+              <p class="fdesc">매일 육즙 가득하게 직접 구워내는 그릴 패티와 오가닉 번, 특제 소스가 조화를 이루어 인기를 끌고 있는 버들마을 골목의 대세 버거 브랜드.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 통닭 -->
+        <div class="fc" tabindex="0">
+          <div class="fci">
+            <div class="ff">
+              <div class="fe">🍗</div>
+              <div class="fname">통닭</div>
+            </div>
+            <div class="fb">
+              <div class="fbn">통닭</div>
+              <p class="fdesc">오랜 세월을 버틴 동네 사랑방 노포 가마솥에서 튀겨내는 옛날식 시장 통닭. 겉은 바삭하고 속은 극도로 촉촉하여 맥주 한 잔 들이켜기 최적입니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. 부대찌개 -->
+        <div class="fc" tabindex="0">
+          <div class="fci">
+            <div class="ff">
+              <div class="fe">🍲</div>
+              <div class="fname">부대찌개</div>
+            </div>
+            <div class="fb">
+              <div class="fbn">부대찌개</div>
+              <p class="fdesc">사골 육수 베이스에 햄, 소시지를 듬뿍 넣고 얼큰 칼칼하게 끓여내 밥 한 공기 뚝딱 비우게 만드는 대중적인 맛이 보장된 단골 밥집 메뉴.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. 브런치카페 -->
+        <div class="fc" tabindex="0">
+          <div class="fci">
+            <div class="ff">
+              <div class="fe">☕</div>
+              <div class="fname">브런치카페</div>
+            </div>
+            <div class="fb">
+              <div class="fbn">브런치카페</div>
+              <p class="fdesc">빈티지하고 서정적인 식물 가득 인테리어 공간에서, 갓 내린 싱글오리진 브루잉 커피와 상큼한 오픈 샌드위치를 즐길 수 있는 여유의 아이콘.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. 빵·베이커리 -->
+        <div class="fc" tabindex="0">
+          <div class="fci">
+            <div class="ff">
+              <div class="fe">🥐</div>
+              <div class="fname">빵·베이커리</div>
+            </div>
+            <div class="fb">
+              <div class="fbn">빵·베이커리</div>
+              <p class="fdesc">천연 발효종을 사용해 매일 아침 구워내는 유기농 식빵과 페이스트리. 달콤한 무화과 빵과 따뜻한 아메리카노의 조합으로 한적한 오후를 완성하세요.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <p class="fnote">※ 오류버들마을 맛집들은 골목 특성상 매장이 분산되어 있으니, 출발 전 카카오맵이나 네이버 지도 등으로 주소와 휴무일을 미리 확인하시는 것을 추천합니다.</p>
+    </div>
+  </section>
+
+  <!-- S-07 VISIT INFO SECTION -->
+  <section id="visit">
+    <div class="inn">
+      <p class="ey">Visit Info</p>
+      <h2 class="st">방문 정보</h2>
+      <p class="ss">힐링 코스를 가장 안전하고 여유롭게 즐기기 위한 핵심 안내</p>
+      
+      <div class="vgrid">
+        <!-- 교통 안내 -->
+        <div class="vb">
+          <div class="vic">🚌</div>
+          <h3>교통 안내</h3>
+          <ul>
+            <li>지하철 1·7호선 온수역 3번 출구 하차 후 버스 환승 권장</li>
+            <li>정류장: 푸른수목원 후문 / 항동하버라인 아파트 단지 방면 하차</li>
+            <li>대부분이 산책로와 인도이므로 걷기 편하고 튼튼한 러닝화 추천</li>
+            <li>철길에서 오류버들마을까지는 마을버스로 10분 정도 소요</li>
+          </ul>
+        </div>
+        <!-- 주의사항 -->
+        <div class="vb">
+          <div class="vic">⚠️</div>
+          <h3>주의사항</h3>
+          <ul>
+            <li>수목원은 자연보호를 위해 휴지통이 전혀 없으니 봉투를 지참하세요</li>
+            <li>항동철길은 보행자 안전 사고 예방을 위해 킥보드, 자전거 탑승 금지</li>
+            <li>철길 코스는 태양을 가려줄 그늘이 없으므로 선크림과 모자 지참 필수</li>
+            <li>버들마을 로컬 숍들은 매장마다 개별 정기휴무일이 상이하니 사전 체크</li>
+          </ul>
+        </div>
+        <!-- 예상 비용 -->
+        <div class="vb">
+          <div class="vic">💰</div>
+          <h3>예상 비용</h3>
+          <ul>
+            <li>서울시립 푸른수목원, 항동도서관, 온실 관람: <strong>무료</strong></li>
+            <li>항동철길 도보 통행 및 사진 촬영: <strong>무료</strong></li>
+            <li>버들마을 내 식사 및 음료/디저트: 인당 약 15,000 ~ 20,000원 선</li>
+          </ul>
+          <div class="vtot">총 1인 약 2만 원 내외</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S-08 SNS SECTION (INSTAGRAM FEEDS) -->
+  <section id="sns">
+    <div class="inn">
+      <p class="ey">SNS Feed</p>
+      <h2 class="st">인스타그램 소식</h2>
+      <p class="ss">푸른수목원과 오류버들마을의 생생한 일상과 계절 변화를 확인해보세요</p>
+      
+      <div class="sns-wrap">
+        
+        <!-- 푸른수목원 인스타그램 -->
+        <div class="sns-card">
+          <div class="sns-hdr">
+            <div class="sns-av sns-av-g">🌳</div>
+            <div class="sns-info">
+              <div class="sns-name">서울시 푸른수목원</div>
+              <div class="sns-hdl">@pureun_arb</div>
+            </div>
+            <a href="https://www.instagram.com/pureun_arb/" target="_blank" rel="noopener" class="sns-follow">팔로우</a>
+          </div>
+          <div class="sns-grid">
+            <a href="https://www.instagram.com/pureun_arb/" target="_blank" rel="noopener" class="sns-photo">
+              <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&q=75" alt="푸른수목원 숲 터널" loading="lazy">
+            </a>
+            <a href="https://www.instagram.com/pureun_arb/" target="_blank" rel="noopener" class="sns-photo">
+              <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=400&q=75" alt="수목원의 아침 햇살" loading="lazy">
+            </a>
+            <a href="https://www.instagram.com/pureun_arb/" target="_blank" rel="noopener" class="sns-photo">
+              <img src="https://images.unsplash.com/photo-1500829243541-74b677fecc30?w=400&q=75" alt="푸릇푸릇한 이끼 계곡" loading="lazy">
+            </a>
+            <a href="https://www.instagram.com/pureun_arb/" target="_blank" rel="noopener" class="sns-photo">
+              <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&q=75" alt="울창한 자작나무 길" loading="lazy">
+            </a>
+            <a href="https://www.instagram.com/pureun_arb/" target="_blank" rel="noopener" class="sns-photo">
+              <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=400&q=75" alt="수변 생태 연못 정경" loading="lazy">
+            </a>
+            <a href="https://www.instagram.com/pureun_arb/" target="_blank" rel="noopener" class="sns-photo">
+              <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=400&q=75" alt="식물원 내부 꽃들" loading="lazy">
+            </a>
+          </div>
+          <div class="sns-foot">
+            <a href="https://www.instagram.com/pureun_arb/" target="_blank" rel="noopener" class="sns-more">Instagram에서 소식 더보기 →</a>
+          </div>
+        </div>
+
+        <!-- 오류버들마을 인스타그램 -->
+        <div class="sns-card">
+          <div class="sns-hdr">
+            <div class="sns-av sns-av-y">🍖</div>
+            <div class="sns-info">
+              <div class="sns-name">오류버들마을 로컬라이프</div>
+              <div class="sns-hdl">@DAILYLIFE_ORYU</div>
+            </div>
+            <a href="https://www.instagram.com/DAILYLIFE_ORYU/" target="_blank" rel="noopener" class="sns-follow">팔로우</a>
+          </div>
+          <div class="sns-grid">
+            <a href="https://www.instagram.com/DAILYLIFE_ORYU/" target="_blank" rel="noopener" class="sns-photo">
+              <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=75" alt="로컬 베이커리 빵들" loading="lazy">
+            </a>
+            <a href="https://www.instagram.com/DAILYLIFE_ORYU/" target="_blank" rel="noopener" class="sns-photo">
+              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=75" alt="따뜻한 파스타 요리" loading="lazy">
+            </a>
+            <a href="https://www.instagram.com/DAILYLIFE_ORYU/" target="_blank" rel="noopener" class="sns-photo">
+              <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=75" alt="조각 피자 모음" loading="lazy">
+            </a>
+            <a href="https://www.instagram.com/DAILYLIFE_ORYU/" target="_blank" rel="noopener" class="sns-photo">
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&q=75" alt="아늑한 동네 카페 내부" loading="lazy">
+            </a>
+            <a href="https://www.instagram.com/DAILYLIFE_ORYU/" target="_blank" rel="noopener" class="sns-photo">
+              <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&q=75" alt="수제 드립커피 추출" loading="lazy">
+            </a>
+            <a href="https://www.instagram.com/DAILYLIFE_ORYU/" target="_blank" rel="noopener" class="sns-photo">
+              <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=400&q=75" alt="감자요리 한 그릇" loading="lazy">
+            </a>
+          </div>
+          <div class="sns-foot">
+            <a href="https://www.instagram.com/DAILYLIFE_ORYU/" target="_blank" rel="noopener" class="sns-more">Instagram에서 소식 더보기 →</a>
+          </div>
+        </div>
+
+      </div>
+      <p class="sns-note">※ 위 인스타그램 피드는 이미지 연출용으로 실제 공식 SNS 계정 정보를 담고 있습니다.</p>
+    </div>
+  </section>
+
+  <!-- S-09 FOOTER SECTION -->
+  <footer>
+    <div class="flogo">구로를<em>걷다</em></div>
+    <div class="insta-section">
+      <p class="insta-label">공식 소식통 팔로우</p>
+      <div class="insta-row">
+        <a href="https://www.instagram.com/pureun_arb/" target="_blank" rel="noopener" class="insta-link">
+          <svg class="insta-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5.5" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/>
+          </svg>
+          <div class="insta-inner">
+            <span class="insta-name">서울시 푸른수목원</span>
+            <span class="insta-handle">@pureun_arb</span>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/DAILYLIFE_ORYU/" target="_blank" rel="noopener" class="insta-link">
+          <svg class="insta-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5.5" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/>
+          </svg>
+          <div class="insta-inner">
+            <span class="insta-name">오류버들마을 로컬라이프</span>
+            <span class="insta-handle">@DAILYLIFE_ORYU</span>
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    <p class="fmeta" style="margin-top: 28px;">구로 지역 현장답사 분석 발표자료 &middot; GLOWIDE 이혜민</p>
+    <p class="fcopy">© 2026 구로를 걷다. All rights reserved.</p>
+    <button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ 맨 위로</button>
+  </footer>
+
+  <!-- Quiz Modal Section -->
+  <div id="quiz-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-card">
+      <button id="quiz-close-btn" class="modal-close" aria-label="닫기">✕</button>
+      
+      <!-- Quiz Intro State -->
+      <div id="quiz-state-intro" class="quiz-state">
+        <span class="quiz-icon">🧭</span>
+        <h3>나의 힐링 성향 분석</h3>
+        <p>3가지 질문으로 나에게 딱 맞는 구로구 힐링 코스를 찾아보세요!</p>
+        <button id="quiz-begin-btn" class="sim-btn">테스트 시작하기</button>
+      </div>
+
+      <!-- Quiz Question 1 -->
+      <div id="quiz-state-q1" class="quiz-state" style="display: none;">
+        <span class="quiz-progress">1 / 3</span>
+        <h3>Q1. 지친 주말, 내가 원하는 완벽한 휴식은?</h3>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-type="A">조용히 자연을 바라보며 사색하기 🌳</button>
+          <button class="quiz-opt" data-type="B">활기차게 걸으며 옛 기찻길 산책하기 🚂</button>
+          <button class="quiz-opt" data-type="C">골목길 구석구석 숨겨진 로컬 맛집 탐방하기 🍔</button>
+        </div>
+      </div>
+
+      <!-- Quiz Question 2 -->
+      <div id="quiz-state-q2" class="quiz-state" style="display: none;">
+        <span class="quiz-progress">2 / 3</span>
+        <h3>Q2. 여행지에서 마주했을 때 가장 설레는 순간은?</h3>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-type="A">큰 창가가 있는 조용한 숲속 도서관을 발견했을 때 📚</button>
+          <button class="quiz-opt" data-type="B">나무가 울창하게 우거진 한적한 철길 위를 걸을 때 🌿</button>
+          <button class="quiz-opt" data-type="C">아늑한 동네 브런치 카페에서 디저트 사진을 찍을 때 ☕</button>
+        </div>
+      </div>
+
+      <!-- Quiz Question 3 -->
+      <div id="quiz-state-q3" class="quiz-state" style="display: none;">
+        <span class="quiz-progress">3 / 3</span>
+        <h3>Q3. 함께 힐링을 떠나고 싶은 최적의 파트너는?</h3>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-type="A">혼자만의 조용한 시간 혹은 편안한 단 한 명 👥</button>
+          <button class="quiz-opt" data-type="B">신나게 움직이고 함께 사진 찍어줄 수 있는 친구 📸</button>
+          <button class="quiz-opt" data-type="C">맛있는 음식을 즐기며 수다를 떨 수 있는 미식 연인 🍽️</button>
+        </div>
+      </div>
+
+      <!-- Quiz Result State -->
+      <div id="quiz-state-result" class="quiz-state" style="display: none;">
+        <span class="quiz-icon" id="quiz-res-emoji">🌳</span>
+        <span class="quiz-kicker">나의 힐링 성향 결과</span>
+        <h3 id="quiz-res-title">사색에 잠긴 숲속 여행자</h3>
+        <p id="quiz-res-desc">조용하고 자연이 있는 공간에서 에너지를 채우는 사색가 타입입니다. 6만 평 푸른수목원의 잔디밭과 조용한 항동도서관에서의 여유를 즐겨보세요!</p>
+        <div class="quiz-result-actions">
+          <button id="quiz-go-btn" class="sim-btn">추천 코스 바로가기 👇</button>
+          <button id="quiz-share-btn" class="sim-btn secondary">결과 복사 &amp; 공유 🔗</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
