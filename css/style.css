@@ -671,8 +671,6 @@ body.theme-light #route {
   overflow: hidden;
   border: 1px solid var(--bdr);
   transition: var(--transition-normal), border-color 0.4s ease;
-  max-width: 720px;
-  margin: 0 auto;
 }
 
 body.theme-dark .rmap {
