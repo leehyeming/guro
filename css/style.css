@@ -700,6 +700,7 @@ body.theme-light .rmap {
 .rmap svg g.transit-rect text { fill: var(--svg-transit-text); transition: fill 0.4s ease; }
 .rmap svg g.transit-bus rect { fill: var(--svg-bus-bg); stroke: var(--svg-bus-stroke); transition: fill 0.4s ease, stroke 0.4s ease; }
 .rmap svg g.transit-bus text { fill: var(--svg-bus-text); transition: fill 0.4s ease; }
+.rmap svg g.transit-text-only text { fill: var(--svg-text-muted); transition: fill 0.4s ease; font-weight: 600; font-size: 8.5px; }
 .rmap svg g.pin-group circle.glow-ring { fill: var(--svg-line); opacity: 0.12; transition: fill 0.4s ease; }
 .rmap svg g.pin-group circle.pin-base { fill: var(--svg-pin-bg); stroke: var(--svg-pin-stroke); transition: fill 0.4s ease, stroke 0.4s ease; }
 .rmap svg g.pin-group circle.pin-base-gold { fill: var(--svg-pin-bg); stroke: var(--gold); transition: fill 0.4s ease; }
@@ -1967,7 +1968,7 @@ body.theme-light .result-name { color: var(--forest); }
 }
 
 #walker-avatar {
-  offset-path: path('M 110,70 C 110,135 250,135 250,200 C 250,265 110,265 110,330 C 110,395 250,395 250,460 C 250,535 180,535 180,610');
+  offset-path: path('M 90,50 C 90,84 270,84 270,118 C 270,152 90,152 90,186 C 90,220 270,220 270,254 C 270,288 180,288 180,322');
   offset-rotate: 0deg;
   transform: translate(0, 0); /* Center aligning walker on paths */
   transition: offset-distance 0.05s linear;
