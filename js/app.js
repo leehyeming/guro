@@ -566,7 +566,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ── FEATURE 5: KAKAO MAP INTEGRATION ──
-  const KAKAO_KEY = 'YOUR_JAVASCRIPT_KEY_HERE'; // Replace with user's Kakao Javascript Key
+  const KAKAO_KEY = 'dbebd1c2db9429fc97be63abf56e482d'; // Replace with user's Kakao Javascript Key
   
   const mapSection = document.getElementById('visit-map');
   if (mapSection) {
