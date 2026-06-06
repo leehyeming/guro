@@ -253,7 +253,7 @@ body.theme-light nav.desk a:hover {
 }
 
 #hbg {
-  background-image: url('../images/hero.jpg');
+  background-image: url('../images/hero.jpg?v=20260607_v2');
   background-size: cover;
   background-position: center;
   background-color: #142318;
@@ -1966,10 +1966,7 @@ body.theme-light .result-name { color: var(--forest); }
 }
 
 #walker-avatar {
-  offset-path: path('M 100,175 C 145,170 178,110 220,110 C 268,110 292,152 340,155 C 382,158 402,100 455,100 C 508,94 538,190 608,215');
-  offset-rotate: auto;
-  transform: translate(-10px, -20px); /* Center aligning walker on paths */
-  transition: offset-distance 0.05s linear;
+  transition: transform 0.05s linear;
 }
 
 @media (max-width: 768px) {

@@ -212,6 +212,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const simSteps = document.getElementById('sim-steps');
   const simCal = document.getElementById('sim-cal');
   const simLoc = document.getElementById('sim-loc');
+  const routeLine = document.querySelector('.route-line');
+  const pathLength = routeLine ? routeLine.getTotalLength() : 0;
+  
+  // Set initial position of walker avatar to the start of the path
+  if (routeLine && pathLength > 0 && walkerAvatar) {
+    const startPoint = routeLine.getPointAtLength(0);
+    walkerAvatar.setAttribute('transform', `translate(${startPoint.x}, ${startPoint.y})`);
+  }
   
   const pins = [
     { name: '01 푸른수목원 🌳', el: document.getElementById('pin-1'), card: document.getElementById('card-1'), threshold: 0 },
@@ -280,7 +288,12 @@ document.addEventListener('DOMContentLoaded', () => {
           triggerConfetti(); // Spark confetti at destination
         }
         
-        walkerAvatar.style.offsetDistance = `${distance}%`;
+        if (routeLine && pathLength > 0) {
+          const point = routeLine.getPointAtLength(pathLength * (distance / 100));
+          walkerAvatar.setAttribute('transform', `translate(${point.x}, ${point.y})`);
+        } else {
+          walkerAvatar.style.offsetDistance = `${distance}%`;
+        }
         updateSimulationStats();
       }, 60); // Speed: approx 12 seconds for full walk
     }
@@ -290,7 +303,12 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(simInterval);
     distance = 0;
     isWalking = false;
-    walkerAvatar.style.offsetDistance = '0%';
+    if (routeLine && pathLength > 0) {
+      const point = routeLine.getPointAtLength(0);
+      walkerAvatar.setAttribute('transform', `translate(${point.x}, ${point.y})`);
+    } else {
+      walkerAvatar.style.offsetDistance = '0%';
+    }
     walkerAvatar.style.display = 'none';
     simPlayBtn.textContent = '▶ 모의 걷기 시작';
     simPlayBtn.disabled = false;
