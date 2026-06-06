@@ -1968,7 +1968,7 @@ body.theme-light .result-name { color: var(--forest); }
 }
 
 #walker-avatar {
-  offset-path: path('M 90,50 C 90,84 270,84 270,118 C 270,152 90,152 90,186 C 90,220 270,220 270,254 C 270,288 180,288 180,322');
+  offset-path: path('M 110,10 C 110,18 250,18 250,25 C 250,32 110,32 110,39 C 110,46 250,46 250,53 C 250,60 180,60 180,67');
   offset-rotate: 0deg;
   transform: translate(0, 0); /* Center aligning walker on paths */
   transition: offset-distance 0.05s linear;
