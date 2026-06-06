@@ -215,10 +215,10 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const pins = [
     { name: '01 푸른수목원 🌳', el: document.getElementById('pin-1'), card: document.getElementById('card-1'), threshold: 0 },
-    { name: '02 항동도서관 📚', el: document.getElementById('pin-2'), card: document.getElementById('card-2'), threshold: 27 },
-    { name: '03 KB숲교육센터 🌿', el: document.getElementById('pin-3'), card: document.getElementById('card-3'), threshold: 55 },
-    { name: '04 항동철길 🚂', el: document.getElementById('pin-4'), card: document.getElementById('card-4'), threshold: 82 },
-    { name: '05 오류버들마을 🍖 (도착!)', el: document.getElementById('pin-5'), card: document.getElementById('card-5'), threshold: 94 }
+    { name: '02 항동도서관 📚', el: document.getElementById('pin-2'), card: document.getElementById('card-2'), threshold: 22 },
+    { name: '03 KB숲교육센터 🌿', el: document.getElementById('pin-3'), card: document.getElementById('card-3'), threshold: 46 },
+    { name: '04 항동철길 🚂', el: document.getElementById('pin-4'), card: document.getElementById('card-4'), threshold: 68 },
+    { name: '05 오류버들마을 🍖 (도착!)', el: document.getElementById('pin-5'), card: document.getElementById('card-5'), threshold: 92 }
   ];
 
   let simInterval = null;
