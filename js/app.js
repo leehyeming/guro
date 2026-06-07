@@ -713,8 +713,8 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         num: '02',
         name: '항동푸른도서관',
-        lat: 37.482743,
-        lng: 126.825221,
+        lat: 37.484439,
+        lng: 126.824734,
         dur: '⏱ 자유롭게 탐방',
         desc: '수목원의 아름다운 조망을 가득 담은 조용하고 아늑한 도서관.'
       },
@@ -729,8 +729,8 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         num: '04',
         name: '항동철길',
-        lat: 37.484439,
-        lng: 126.824734,
+        lat: 37.482743,
+        lng: 126.825221,
         dur: '⏱ 약 25분 소요',
         desc: '옛 화물열차가 오가던 흔적이 그대로 남은 정취 있는 단선 철도.'
       },
