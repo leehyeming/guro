@@ -1092,6 +1092,12 @@ body.theme-light #food .ey { color: var(--gold); }
   border-bottom: 1px solid var(--bdr);
 }
 
+.fimg a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .fimg img {
   width: 100%;
   height: 100%;
