@@ -2632,6 +2632,15 @@ body.theme-light .faq-item.active .faq-arrow {
   margin-bottom: 0;
 }
 
+/* Place card title link hover effect */
+.pn a {
+  transition: var(--transition-fast);
+}
+
+.pn a:hover {
+  color: var(--gold);
+}
+
 
 
 
