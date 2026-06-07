@@ -1011,15 +1011,42 @@ body.theme-light #food .ey { color: var(--gold); }
   border: 1px solid var(--bdr);
 }
 
-.fe {
-  font-size: 48px;
-  margin-bottom: 10px;
+.fimg {
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+  border-top-left-radius: 11px;
+  border-top-right-radius: 11px;
+  border-bottom: 1px solid var(--bdr);
+}
+
+.fimg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.fc:hover .fimg img {
+  transform: scale(1.06);
+}
+
+.ff {
+  justify-content: flex-start !important;
 }
 
 .fname {
   font-family: var(--font-title);
-  font-size: 17px;
+  font-size: 15px;
   color: var(--text);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  padding: 0 12px;
 }
 
 body.theme-dark .fname {
@@ -1116,15 +1143,19 @@ body.theme-light .fc .fb {
   border: none;
 }
 
-body.theme-light .fe {
-  font-size: 44px;
-  margin-bottom: 14px;
+body.theme-light .fimg {
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border-bottom: none;
 }
 
 body.theme-light .fname {
   font-size: 18px;
   color: #faf7f2;
   margin-bottom: 10px;
+  display: block;
+  flex: none;
+  padding: 0;
 }
 
 body.theme-light .fbn {
@@ -1939,9 +1970,12 @@ body.theme-light .card-front {
 
 .food-title {
   font-family: var(--font-title);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  white-space: nowrap;
+  text-align: center;
+  word-break: keep-all;
+  line-height: 1.25;
+  padding: 0 4px;
 }
 
 /* Controls */

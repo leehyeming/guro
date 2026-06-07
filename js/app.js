@@ -194,12 +194,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   animateOnScroll('#food', 75, 0.08);
   animateOnScroll('#visit', 100, 0.08);
-  animateOnScroll('#sns', 100, 0.08);
 
   // Re-run animations trigger when theme changes to recalculate layouts
   window.addEventListener('themechanged', () => {
     // Reset entry class for a fresh animation trigger in new layout
-    const allAnimated = document.querySelectorAll('.pc, .fc, .vb, .sns-card');
+    const allAnimated = document.querySelectorAll('.pc, .fc, .vb');
     allAnimated.forEach(el => {
       el.classList.add('in'); // Instantly show cards when theme toggled to avoid weird state delays
     });
@@ -336,12 +335,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const resultScrollBtn = document.getElementById('result-scroll-btn');
 
   const menuItems = [
-    { name: '옹기종기감자옹심이 🥣', emoji: '🥣', desc: '쫄깃쫄깃한 감자 옹심이 수제비와 구수한 메밀 들깨 국물이 어우러진 오류동 노포 맛집!', index: 0, selector: '#food .fgrid .fc:nth-child(1)' },
-    { name: '스테이플버거 🍔', emoji: '🍔', desc: '육즙 가득 두툼한 패티와 매일 구워내는 오가닉 번이 환상적인 버들마을 대표 수제버거!', index: 1, selector: '#food .fgrid .fc:nth-child(2)' },
-    { name: '87닭강정 오류본점 🍗', emoji: '🍗', desc: '바삭하고 얇은 튀김옷과 비법 매콤달콤 소스로 버무려 식어도 맛있는 명품 닭강정 맛집!', index: 2, selector: '#food .fgrid .fc:nth-child(3)' },
-    { name: '병규네 부대찌개 🍲', emoji: '🍲', desc: '깊은 사골 육수에 고품질 소시지와 햄, 아낌없는 치즈로 국물 맛을 낸 인생 부대찌개 식당!', index: 3, selector: '#food .fgrid .fc:nth-child(4)' },
-    { name: '사생활 ☕', emoji: '☕', desc: '감성 가득 식물 인테리어 공간에서 파스타와 샐러드, 정성 담긴 브런치를 즐기는 힐링 카페!', index: 4, selector: '#food .fgrid .fc:nth-child(5)' },
-    { name: '브레드홍 오류점 🥐', emoji: '🥐', desc: '천연 발효종 유기농 식빵과 겹겹이 찢어지는 버터 풍미 가득 크루아상이 맛있는 골목 빵집!', index: 5, selector: '#food .fgrid .fc:nth-child(6)' }
+    { name: '옹기종기감자옹심이', emoji: '🥣', desc: '쫄깃쫄깃한 감자 옹심이 수제비와 구수한 메밀 들깨 국물이 어우러진 오류동 노포 맛집!', index: 0, selector: '#food .fgrid .fc:nth-child(1)' },
+    { name: '스테이플버거', emoji: '🍔', desc: '육즙 가득 두툼한 패티와 매일 구워내는 오가닉 번이 환상적인 버들마을 대표 수제버거!', index: 1, selector: '#food .fgrid .fc:nth-child(2)' },
+    { name: '87닭강정 오류본점', emoji: '🍗', desc: '바삭하고 얇은 튀김옷과 비법 매콤달콤 소스로 버무려 식어도 맛있는 명품 닭강정 맛집!', index: 2, selector: '#food .fgrid .fc:nth-child(3)' },
+    { name: '병규네 부대찌개', emoji: '🍲', desc: '깊은 사골 육수에 고품질 소시지와 햄, 아낌없는 치즈로 국물 맛을 낸 인생 부대찌개 식당!', index: 3, selector: '#food .fgrid .fc:nth-child(4)' },
+    { name: '사생활 파스타&브런치 카페', emoji: '☕', desc: '감성 가득 식물 인테리어 공간에서 파스타와 샐러드, 정성 담긴 브런치를 즐기는 힐링 카페!', index: 4, selector: '#food .fgrid .fc:nth-child(5)' },
+    { name: '브레드홍 오류점', emoji: '🥐', desc: '천연 발효종 유기농 식빵과 겹겹이 찢어지는 버터 풍미 가득 크루아상이 맛있는 골목 빵집!', index: 5, selector: '#food .fgrid .fc:nth-child(6)' }
   ];
 
   let isDrawing = false;
