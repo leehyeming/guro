@@ -325,10 +325,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // ── FEATURE 2: MENU ROULETTE LOGIC ──
-  const rouletteWheel = document.getElementById('roulette-wheel');
-  const rouletteSpinBtn = document.getElementById('roulette-spin-btn');
-  const rouletteResult = document.getElementById('roulette-result');
+  // ── FEATURE 2: MENU CARD DECK DRAW LOGIC ──
+  const healingCards = document.querySelectorAll('.healing-card');
+  const deckDrawBtn = document.getElementById('deck-draw-btn');
+  const deckResetBtn = document.getElementById('deck-reset-btn');
+  const deckResult = document.getElementById('deck-result');
   const resultEmoji = document.getElementById('result-emoji');
   const resultText = document.getElementById('result-text');
   const resultDesc = document.getElementById('result-desc');
@@ -343,62 +344,123 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: '베이커리 🥐', emoji: '🥐', desc: '직접 밀가루를 반죽해 갓 구운 천연발효 크루아상! 달콤하고 바삭한 버터 향으로 코스를 매듭지으세요.', index: 5, selector: '#food .fgrid .fc:nth-child(6)' }
   ];
 
-  let currentSpins = 5;
+  let isDrawing = false;
+  let hasDrawn = false;
 
-  const spinRoulette = () => {
-    if (!rouletteWheel) return;
-    rouletteSpinBtn.disabled = true;
-    rouletteResult.style.display = 'none';
-    
-    // Choose random menu (0 to 5)
-    const targetIdx = Math.floor(Math.random() * menuItems.length);
+  const showDrawResult = (targetIdx) => {
     const selectedMenu = menuItems[targetIdx];
     
-    // Calculate final rotation
-    currentSpins += 5; // Add extra spins
-    const offset = Math.random() * 40 - 20; // Wobble pointer
-    const totalRotation = (currentSpins * 360) + 240 - (targetIdx * 60) + offset;
+    // Show result content
+    resultEmoji.textContent = selectedMenu.emoji;
+    resultText.textContent = selectedMenu.name;
+    resultDesc.textContent = selectedMenu.desc;
+    resultScrollBtn.setAttribute('href', selectedMenu.selector);
     
-    rouletteWheel.style.transform = `rotate(${totalRotation}deg)`;
+    deckResult.style.display = 'block';
     
-    // Wait for animation (4s)
-    setTimeout(() => {
-      // Show result
-      resultEmoji.textContent = selectedMenu.emoji;
-      resultText.textContent = selectedMenu.name;
-      resultDesc.textContent = selectedMenu.desc;
-      
-      // Update link target to corresponding card
-      resultScrollBtn.setAttribute('href', selectedMenu.selector);
-      
-      rouletteResult.style.display = 'block';
-      rouletteSpinBtn.disabled = false;
-      
-      // Flash the selected card on the food grid
-      const foodCards = document.querySelectorAll('#food .fc');
-      foodCards.forEach(c => c.style.outline = 'none');
-      const targetCard = document.querySelector(selectedMenu.selector);
-      if (targetCard) {
-        targetCard.style.outline = '3px solid var(--gold)';
-        targetCard.style.borderRadius = '12px';
-        targetCard.style.transition = 'outline 0.3s ease';
-        setTimeout(() => {
-          targetCard.style.outline = 'none';
-        }, 3000);
-      }
-      
-      triggerConfetti();
-    }, 4100);
+    // Flash the selected card on the food grid
+    const foodCards = document.querySelectorAll('#food .fc');
+    foodCards.forEach(c => c.style.outline = 'none');
+    const targetCard = document.querySelector(selectedMenu.selector);
+    if (targetCard) {
+      targetCard.style.outline = '3px solid var(--gold)';
+      targetCard.style.borderRadius = '12px';
+      targetCard.style.transition = 'outline 0.3s ease';
+      setTimeout(() => {
+        targetCard.style.outline = 'none';
+      }, 3000);
+    }
+    
+    triggerConfetti();
   };
 
-  if (rouletteSpinBtn) {
-    rouletteSpinBtn.addEventListener('click', spinRoulette);
+  const drawCardRandomly = () => {
+    if (isDrawing || hasDrawn) return;
+    isDrawing = true;
+    deckDrawBtn.disabled = true;
+    
+    // Add shuffling animation to all cards
+    healingCards.forEach((card) => {
+      card.style.transform = `translateY(${Math.random() * 10 - 5}px) rotate(${Math.random() * 10 - 5}deg) scale(0.95)`;
+      card.classList.add('disabled');
+    });
+    
+    setTimeout(() => {
+      // Pick random index
+      const targetIdx = Math.floor(Math.random() * menuItems.length);
+      const targetCard = document.querySelector(`.healing-card[data-index="${targetIdx}"]`);
+      
+      // Reset card layout slightly, then flip the chosen card
+      healingCards.forEach((card) => {
+        card.style.transform = '';
+      });
+      
+      setTimeout(() => {
+        targetCard.classList.remove('disabled');
+        targetCard.classList.add('flipped', 'active-flip');
+        
+        setTimeout(() => {
+          showDrawResult(targetIdx);
+          isDrawing = false;
+          hasDrawn = true;
+          deckDrawBtn.style.display = 'none';
+          deckResetBtn.style.display = 'inline-block';
+        }, 600);
+      }, 200);
+      
+    }, 800);
+  };
+
+  const resetDeck = () => {
+    if (isDrawing) return;
+    hasDrawn = false;
+    deckResult.style.display = 'none';
+    
+    healingCards.forEach(card => {
+      card.classList.remove('flipped', 'disabled', 'active-flip');
+      card.style.transform = '';
+    });
+    
+    deckDrawBtn.style.display = 'inline-block';
+    deckDrawBtn.disabled = false;
+    deckResetBtn.style.display = 'none';
+  };
+
+  // Bind direct card click draw
+  healingCards.forEach(card => {
+    card.addEventListener('click', function() {
+      if (isDrawing || hasDrawn) return;
+      const targetIdx = parseInt(this.dataset.index, 10);
+      
+      isDrawing = true;
+      deckDrawBtn.disabled = true;
+      
+      // Disable others, flip this
+      healingCards.forEach(c => {
+        if (c !== this) c.classList.add('disabled');
+      });
+      
+      this.classList.add('flipped', 'active-flip');
+      
+      setTimeout(() => {
+        showDrawResult(targetIdx);
+        isDrawing = false;
+        hasDrawn = true;
+        deckDrawBtn.style.display = 'none';
+        deckResetBtn.style.display = 'inline-block';
+      }, 600);
+    });
+  });
+
+  if (deckDrawBtn && deckResetBtn) {
+    deckDrawBtn.addEventListener('click', drawCardRandomly);
+    deckResetBtn.addEventListener('click', resetDeck);
   }
 
 
   // ── HELPER: CONFETTI EXPLOSION ──
   const triggerConfetti = () => {
-    const containers = [document.querySelector('.roulette-box'), document.querySelector('.sim-controls')];
+    const containers = [document.getElementById('card-deck-container'), document.querySelector('.sim-controls')];
     const container = containers[0] || document.body;
     const emojis = ['🎉', '🍔', '🥣', '🍗', '🍲', '☕', '🥐', '✨', '🌳', '❤️'];
     

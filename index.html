@@ -455,24 +455,89 @@
       <h2 class="st">맛집 &amp; 먹거리</h2>
       <p class="ss">오류버들마을이 자랑하는 대표 로컬 메뉴 여섯 가지 (다크 테마에서는 마우스를 올려 뒤집어보세요)</p>
       
-      <!-- Menu Roulette Section -->
-      <div class="roulette-section">
-        <div class="roulette-box">
-          <div class="roulette-container">
-            <div class="roulette-wheel" id="roulette-wheel">
-              <div class="roulette-slice" style="--i:0;"><div class="roulette-slice-inner">🥣 옹심이</div></div>
-              <div class="roulette-slice" style="--i:1;"><div class="roulette-slice-inner">🍔 수제버거</div></div>
-              <div class="roulette-slice" style="--i:2;"><div class="roulette-slice-inner">🍗 옛날통닭</div></div>
-              <div class="roulette-slice" style="--i:3;"><div class="roulette-slice-inner">🍲 부대찌개</div></div>
-              <div class="roulette-slice" style="--i:4;"><div class="roulette-slice-inner">☕ 브런치</div></div>
-              <div class="roulette-slice" style="--i:5;"><div class="roulette-slice-inner">🥐 베이커리</div></div>
+      <!-- Menu Card Deck Recommendation Section -->
+      <div class="card-deck-section">
+        <div class="card-deck-container" id="card-deck-container">
+          <!-- Card 1 -->
+          <div class="healing-card" data-index="0">
+            <div class="card-inner">
+              <div class="card-front">
+                <span class="card-gold-tree">🌳</span>
+              </div>
+              <div class="card-back">
+                <span class="food-emoji">🥣</span>
+                <span class="food-title">감자옹심이</span>
+              </div>
             </div>
-            <div class="roulette-pointer">▼</div>
           </div>
-          <button id="roulette-spin-btn" class="roulette-btn">🎪 오늘의 메뉴 추천받기</button>
+          <!-- Card 2 -->
+          <div class="healing-card" data-index="1">
+            <div class="card-inner">
+              <div class="card-front">
+                <span class="card-gold-tree">🌳</span>
+              </div>
+              <div class="card-back">
+                <span class="food-emoji">🍔</span>
+                <span class="food-title">수제버거</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="healing-card" data-index="2">
+            <div class="card-inner">
+              <div class="card-front">
+                <span class="card-gold-tree">🌳</span>
+              </div>
+              <div class="card-back">
+                <span class="food-emoji">🍗</span>
+                <span class="food-title">옛날통닭</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="healing-card" data-index="3">
+            <div class="card-inner">
+              <div class="card-front">
+                <span class="card-gold-tree">🌳</span>
+              </div>
+              <div class="card-back">
+                <span class="food-emoji">🍲</span>
+                <span class="food-title">부대찌개</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 5 -->
+          <div class="healing-card" data-index="4">
+            <div class="card-inner">
+              <div class="card-front">
+                <span class="card-gold-tree">🌳</span>
+              </div>
+              <div class="card-back">
+                <span class="food-emoji">☕</span>
+                <span class="food-title">브런치</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 6 -->
+          <div class="healing-card" data-index="5">
+            <div class="card-inner">
+              <div class="card-front">
+                <span class="card-gold-tree">🌳</span>
+              </div>
+              <div class="card-back">
+                <span class="food-emoji">🥐</span>
+                <span class="food-title">베이커리</span>
+              </div>
+            </div>
+          </div>
         </div>
         
-        <div class="roulette-result" id="roulette-result" style="display: none;">
+        <div class="deck-controls">
+          <button id="deck-draw-btn" class="deck-btn">🔮 오늘의 힐링 푸드 카드 뽑기</button>
+          <button id="deck-reset-btn" class="deck-btn secondary" style="display: none;">🔄 다시 뽑기</button>
+        </div>
+        
+        <div class="roulette-result" id="deck-result" style="display: none;">
           <div class="result-content">
             <span class="result-emoji" id="result-emoji">🍔</span>
             <h4 class="result-name">오늘의 추천 메뉴: <span id="result-text">수제버거</span></h4>

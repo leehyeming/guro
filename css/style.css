@@ -1828,8 +1828,9 @@ body.theme-dark .sim-stat-val { color: var(--cream); }
 body.theme-light .sim-stat-val { color: var(--forest); }
 
 /* ── MENU ROULETTE SECTION ── */
-.roulette-section {
-  max-width: 500px;
+/* ── MENU CARD DECK SECTION ── */
+.card-deck-section {
+  max-width: 680px;
   margin: 32px auto 48px;
   background: var(--surface);
   border: 1px solid var(--bdr);
@@ -1840,77 +1841,118 @@ body.theme-light .sim-stat-val { color: var(--forest); }
   transition: background 0.4s ease, border-color 0.4s ease;
 }
 
-.roulette-box {
-  position: relative;
-  display: inline-block;
-}
-
-.roulette-container {
-  position: relative;
-  width: 260px;
-  height: 260px;
+.card-deck-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
   margin: 0 auto 24px;
+  perspective: 1000px;
+  padding: 10px 0;
 }
 
-.roulette-wheel {
+/* Individual Card */
+.healing-card {
+  height: 120px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.healing-card:hover {
+  transform: translateY(-5px);
+}
+
+.healing-card.disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+  filter: grayscale(0.5);
+}
+
+.healing-card.disabled:hover {
+  transform: none;
+}
+
+.card-inner {
+  position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
-  position: relative;
-  overflow: hidden;
-  border: 5px solid var(--gold);
-  transition: transform 4s cubic-bezier(0.15, 0.85, 0.15, 1);
-  box-shadow: 0 8px 32px var(--shadow);
-  background: conic-gradient(
-    #4a7c59 0deg 60deg,
-    #c4a24a 60deg 120deg,
-    #1a3a1f 120deg 180deg,
-    #5c8f6f 180deg 240deg,
-    #d4b45a 240deg 300deg,
-    #2d5939 300deg 360deg
-  );
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
 }
 
-.roulette-slice {
+/* Flipped state */
+.healing-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Glowing active card */
+.healing-card.active-flip .card-inner {
+  box-shadow: 0 0 15px var(--gold);
+  border-radius: 8px;
+}
+
+/* Front & Back Faces */
+.card-front, .card-back {
   position: absolute;
-  width: 50%;
-  height: 30px;
-  transform-origin: 0% 50%;
-  top: 115px; /* (260 - 30) / 2 */
-  left: 130px; /* 260 / 2 */
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  border: 2px solid var(--bdr);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   box-sizing: border-box;
-  transform: rotate(calc(var(--i) * 60deg + 30deg)) translate(35px, 0);
 }
 
-.roulette-slice-inner {
+/* Card Front */
+.card-front {
+  background: linear-gradient(135deg, #1a3a1f, #2d5939);
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+body.theme-light .card-front {
+  background: linear-gradient(135deg, #4a7c59, #2d5939);
+}
+
+.card-gold-tree {
+  font-size: 28px;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+
+/* Card Back */
+.card-back {
+  background: var(--bg2);
+  color: var(--text);
+  transform: rotateY(180deg);
+  padding: 8px;
+  gap: 6px;
+}
+
+.food-emoji {
+  font-size: 32px;
+}
+
+.food-title {
   font-family: var(--font-title);
-  font-size: 13px;
-  color: #ffffff;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  font-size: 11px;
+  font-weight: 700;
   white-space: nowrap;
 }
 
-.roulette-pointer {
-  position: absolute;
-  top: -16px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 26px;
-  color: var(--gold);
-  z-index: 5;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-  animation: pointerWobble 1s infinite alternate;
+/* Controls */
+.deck-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
 }
 
-@keyframes pointerWobble {
-  0% { transform: translateX(-50%) translateY(0); }
-  100% { transform: translateX(-50%) translateY(2px); }
-}
-
-.roulette-btn {
+.deck-btn {
   font-family: var(--font-title);
   font-size: 15px;
   padding: 12px 30px;
@@ -1923,12 +1965,25 @@ body.theme-light .sim-stat-val { color: var(--forest); }
   box-shadow: 0 4px 15px rgba(196,162,74,0.3);
 }
 
-.roulette-btn:hover {
+.deck-btn:hover {
   transform: translateY(-2px) scale(1.03);
   box-shadow: 0 6px 20px rgba(196,162,74,0.45);
 }
 
-.roulette-btn:disabled {
+.deck-btn.secondary {
+  background: var(--bg2);
+  color: var(--text);
+  border: 1px solid var(--bdr);
+  box-shadow: none;
+}
+
+.deck-btn.secondary:hover {
+  background: var(--surface);
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.deck-btn:disabled {
   background: var(--muted) !important;
   color: var(--text) !important;
   opacity: 0.6;
@@ -2020,20 +2075,15 @@ body.theme-light .result-name { color: var(--forest); }
     grid-template-columns: 1fr;
     gap: 12px;
   }
-  .roulette-section {
+  .card-deck-section {
     padding: 24px 16px;
   }
-  .roulette-container {
-    width: 220px;
-    height: 220px;
+  .card-deck-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
-  .roulette-wheel {
-    border-width: 4px;
-  }
-  .roulette-slice {
-    top: 95px; /* (220 - 30) / 2 */
-    left: 110px; /* 220 / 2 */
-    transform: rotate(calc(var(--i) * 60deg + 30deg)) translate(20px, 0);
+  .healing-card {
+    height: 110px;
   }
 }
 
