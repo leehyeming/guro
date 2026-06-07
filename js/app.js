@@ -336,12 +336,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const resultScrollBtn = document.getElementById('result-scroll-btn');
 
   const menuItems = [
-    { name: '감자옹심이 🥣', emoji: '🥣', desc: '강원도 전통 옹심이 수제비! 고소한 국물이 걷느라 지친 하루 피로를 풀어줍니다.', index: 0, selector: '#food .fgrid .fc:nth-child(1)' },
-    { name: '수제버거 🍔', emoji: '🍔', desc: '육즙 가득 버거! 힙한 동네 버거샵에서 감각적인 한 끼 식사를 곁들여 보세요.', index: 1, selector: '#food .fgrid .fc:nth-child(2)' },
-    { name: '가마솥 통닭 🍗', emoji: '🍗', desc: '바삭하고 짭조름한 가마솥 옛날통닭과 함께 시원한 맥주 한 잔의 여유를 부려보세요.', index: 2, selector: '#food .fgrid .fc:nth-child(3)' },
-    { name: '부대찌개 🍲', emoji: '🍲', desc: '햄과 소시지가 듬뿍 끓어오르는 뚝배기 밥집! 든든하게 먹고 다시 힘차게 걸을 수 있습니다.', index: 3, selector: '#food .fgrid .fc:nth-child(4)' },
-    { name: '브런치 & 브루잉 ☕', emoji: '☕', desc: '빈티지 정원의 감성을 품은 카페! 향긋한 핸드드립 커피와 오픈 샌드위치를 즐겨 보세요.', index: 4, selector: '#food .fgrid .fc:nth-child(5)' },
-    { name: '베이커리 🥐', emoji: '🥐', desc: '직접 밀가루를 반죽해 갓 구운 천연발효 크루아상! 달콤하고 바삭한 버터 향으로 코스를 매듭지으세요.', index: 5, selector: '#food .fgrid .fc:nth-child(6)' }
+    { name: '옹기종기감자옹심이 🥣', emoji: '🥣', desc: '쫄깃쫄깃한 감자 옹심이 수제비와 구수한 메밀 들깨 국물이 어우러진 오류동 노포 맛집!', index: 0, selector: '#food .fgrid .fc:nth-child(1)' },
+    { name: '스테이플버거 🍔', emoji: '🍔', desc: '육즙 가득 두툼한 패티와 매일 구워내는 오가닉 번이 환상적인 버들마을 대표 수제버거!', index: 1, selector: '#food .fgrid .fc:nth-child(2)' },
+    { name: '87닭강정 오류본점 🍗', emoji: '🍗', desc: '바삭하고 얇은 튀김옷과 비법 매콤달콤 소스로 버무려 식어도 맛있는 명품 닭강정 맛집!', index: 2, selector: '#food .fgrid .fc:nth-child(3)' },
+    { name: '병규네 부대찌개 🍲', emoji: '🍲', desc: '깊은 사골 육수에 고품질 소시지와 햄, 아낌없는 치즈로 국물 맛을 낸 인생 부대찌개 식당!', index: 3, selector: '#food .fgrid .fc:nth-child(4)' },
+    { name: '사생활 ☕', emoji: '☕', desc: '감성 가득 식물 인테리어 공간에서 파스타와 샐러드, 정성 담긴 브런치를 즐기는 힐링 카페!', index: 4, selector: '#food .fgrid .fc:nth-child(5)' },
+    { name: '브레드홍 오류점 🥐', emoji: '🥐', desc: '천연 발효종 유기농 식빵과 겹겹이 찢어지는 버터 풍미 가득 크루아상이 맛있는 골목 빵집!', index: 5, selector: '#food .fgrid .fc:nth-child(6)' }
   ];
 
   let isDrawing = false;

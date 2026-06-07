@@ -2691,6 +2691,16 @@ body.theme-light .faq-item.active .faq-arrow {
   color: var(--gold);
 }
 
+/* Food card title links hover effect */
+.fname a, .fbn a {
+  transition: var(--transition-fast);
+}
+
+.fname a:hover, .fbn a:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+
 
 
 
