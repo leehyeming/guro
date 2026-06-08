@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
+  const isEnglish = document.documentElement.lang === 'en';
   // ── THEME SWITCHER LOGIC ──
   const themeToggleBtns = document.querySelectorAll('.theme-toggle-btn');
   
@@ -220,7 +221,13 @@ document.addEventListener('DOMContentLoaded', () => {
     walkerAvatar.setAttribute('transform', `translate(${startPoint.x}, ${startPoint.y})`);
   }
   
-  const pins = [
+  const pins = isEnglish ? [
+    { name: '01 Arboretum 🌳', el: document.getElementById('pin-1'), card: document.getElementById('card-1'), threshold: 0 },
+    { name: '02 Library 📚', el: document.getElementById('pin-2'), card: document.getElementById('card-2'), threshold: 22 },
+    { name: '03 Forest Center 🌿', el: document.getElementById('pin-3'), card: document.getElementById('card-3'), threshold: 46 },
+    { name: '04 Railroad 🚂', el: document.getElementById('pin-4'), card: document.getElementById('card-4'), threshold: 68 },
+    { name: '05 Beodeul Town 🍖 (Arrived!)', el: document.getElementById('pin-5'), card: document.getElementById('card-5'), threshold: 92 }
+  ] : [
     { name: '01 푸른수목원 🌳', el: document.getElementById('pin-1'), card: document.getElementById('card-1'), threshold: 0 },
     { name: '02 항동도서관 📚', el: document.getElementById('pin-2'), card: document.getElementById('card-2'), threshold: 22 },
     { name: '03 KB숲교육센터 🌿', el: document.getElementById('pin-3'), card: document.getElementById('card-3'), threshold: 46 },
@@ -241,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
     simCal.textContent = calories;
     
     // Find active location
-    let currentLocation = '출발 대기';
+    let currentLocation = isEnglish ? 'Ready to Start' : '출발 대기';
     let activePinIdx = -1;
     
     for (let i = pins.length - 1; i >= 0; i--) {
@@ -268,12 +275,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isWalking) {
       // Pause
       clearInterval(simInterval);
-      simPlayBtn.textContent = '▶ 모의 걷기 시작';
+      simPlayBtn.textContent = isEnglish ? '▶ Start Walk' : '▶ 모의 걷기 시작';
       isWalking = false;
     } else {
       // Start/Resume
       walkerAvatar.style.display = 'block';
-      simPlayBtn.textContent = '⏸ 일시 정지';
+      simPlayBtn.textContent = isEnglish ? '⏸ Pause' : '⏸ 일시 정지';
       isWalking = true;
       
       simInterval = setInterval(() => {
@@ -281,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (distance > 100) {
           distance = 100;
           clearInterval(simInterval);
-          simPlayBtn.textContent = '완료! 🎉';
+          simPlayBtn.textContent = isEnglish ? 'Finished! 🎉' : '완료! 🎉';
           simPlayBtn.disabled = true;
           isWalking = false;
           triggerConfetti(); // Spark confetti at destination
@@ -309,13 +316,13 @@ document.addEventListener('DOMContentLoaded', () => {
       walkerAvatar.style.offsetDistance = '0%';
     }
     walkerAvatar.style.display = 'none';
-    simPlayBtn.textContent = '▶ 모의 걷기 시작';
+    simPlayBtn.textContent = isEnglish ? '▶ Start Walk' : '▶ 모의 걷기 시작';
     simPlayBtn.disabled = false;
     
     pins.forEach(pin => pin.el.classList.remove('active'));
     
     updateSimulationStats();
-    simLoc.textContent = '대기 중';
+    simLoc.textContent = isEnglish ? 'Waiting...' : '대기 중';
   };
 
   if (simPlayBtn && simResetBtn) {
@@ -334,7 +341,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const resultDesc = document.getElementById('result-desc');
   const resultScrollBtn = document.getElementById('result-scroll-btn');
 
-  const menuItems = [
+  const menuItems = isEnglish ? [
+    { name: 'Onggijonggi Potato Ongsimi', emoji: '🥣', desc: 'Potato dumpling soup in a savory perilla seed broth. Chewy and comforting!', index: 0, selector: '#food .fgrid .fc:nth-child(1)' },
+    { name: 'Staple Burger', emoji: '🍔', desc: 'Juicy, hand-pressed beef patties with organic buns. The prime burger spot!', index: 1, selector: '#food .fgrid .fc:nth-child(2)' },
+    { name: '87 Sweet & Spicy Chicken', emoji: '🍗', desc: 'Crispy deep-fried chicken bites glazed in a secret sweet-and-spicy sauce.', index: 2, selector: '#food .fgrid .fc:nth-child(3)' },
+    { name: 'Byunggyu\'s Budae-jjigae', emoji: '🍲', desc: 'Spicy sausage and ham stew simmered in rich bone broth. A local favorite!', index: 3, selector: '#food .fgrid .fc:nth-child(4)' },
+    { name: 'Sasaenghwal Cafe', emoji: '☕', desc: 'A cozy botanical cafe serving fusion pasta, salads, and fresh brunch platters.', index: 4, selector: '#food .fgrid .fc:nth-child(5)' },
+    { name: 'Bread Hong', emoji: '🥐', desc: 'Organic bakery famous for freshly baked sourdough bread and butter croissants.', index: 5, selector: '#food .fgrid .fc:nth-child(6)' }
+  ] : [
     { name: '옹기종기감자옹심이', emoji: '🥣', desc: '쫄깃쫄깃한 감자 옹심이 수제비와 구수한 메밀 들깨 국물이 어우러진 오류동 노포 맛집!', index: 0, selector: '#food .fgrid .fc:nth-child(1)' },
     { name: '스테이플버거', emoji: '🍔', desc: '육즙 가득 두툼한 패티와 매일 구워내는 오가닉 번이 환상적인 버들마을 대표 수제버거!', index: 1, selector: '#food .fgrid .fc:nth-child(2)' },
     { name: '87닭강정 오류본점', emoji: '🍗', desc: '바삭하고 얇은 튀김옷과 비법 매콤달콤 소스로 버무려 식어도 맛있는 명품 닭강정 맛집!', index: 2, selector: '#food .fgrid .fc:nth-child(3)' },
@@ -582,19 +596,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let desc = '';
     
     if (resultType === 'A') {
-      title = '사색에 잠긴 숲속 여행자';
+      title = isEnglish ? 'Contemplative Forest Traveler' : '사색에 잠긴 숲속 여행자';
       emoji = '🌳';
-      desc = '조용하고 푸르른 대자연과 호흡하며 마음에 평화를 얻는 사색가 타입입니다. 6만 평 푸른수목원의 드넓은 저수지 산책로와 숲속 깊숙이 파묻힌 항동도서관에서의 평온한 독서를 추천합니다!';
+      desc = isEnglish ? 'You recharge your energy by resting in quiet, natural spaces. We suggest walking through Pureun Arboretum and relaxing at Hangdong Library!' : '조용하고 푸르른 대자연과 호흡하며 마음에 평화를 얻는 사색가 타입입니다. 6만 평 푸른수목원의 드넓은 저수지 산책로와 숲속 깊숙이 파묻힌 항동도서관에서의 평온한 독서를 추천합니다!';
       quizTargetSelector = '#card-1';
     } else if (resultType === 'B') {
-      title = '발길 닿는 대로 철길 탐험가';
+      title = isEnglish ? 'Nostalgic Railroad Explorer' : '발길 닿는 대로 철길 탐험가';
       emoji = '🚂';
-      desc = '시간이 멈춘 듯 이색적인 길을 걸으며 옛 낭만을 만끽하는 모험가 타입입니다. 1959년 준공된 낭만 가득한 옛 항동철길 위를 천천히 따라 걸으며 추억의 사진을 찍는 코스가 가장 어울려요!';
+      desc = isEnglish ? 'You enjoy walking along historic paths and capturing retro, nostalgic moments. The single-track rails of Hangdong Railroad built in 1959 are perfect for you!' : '시간이 멈춘 듯 이색적인 길을 걸으며 옛 낭만을 만끽하는 모험가 타입입니다. 1959년 준공된 낭만 가득한 옛 항동철길 위를 천천히 따라 걸으며 추억의 사진을 찍는 코스가 가장 어울려요!';
       quizTargetSelector = '#card-4';
     } else {
-      title = '로컬 골목을 개척하는 낭만 미식가';
+      title = isEnglish ? 'Local Alleyway Foodie' : '로컬 골목을 개척하는 낭만 미식가';
       emoji = '🍖';
-      desc = '소소한 상점가와 아기자기한 골목 사이에 숨겨진 힙한 맛집, 디저트 베이커리를 찾아 탐험하는 미식가 타입입니다. 구로구 오류버들마을만의 개성 가득한 맛집과 빵집을 탐방해보세요!';
+      desc = isEnglish ? 'You love exploring hidden cafes, local bistros, and bakeries tucked away in nostalgic alleys. Explore the unique local dining spots of Oryu Beodeul Town!' : '소소한 상점가와 아기자기한 골목 사이에 숨겨진 힙한 맛집, 디저트 베이커리를 찾아 탐험하는 미식가 타입입니다. 구로구 오류버들마을만의 개성 가득한 맛집과 빵집을 탐방해보세요!';
       quizTargetSelector = '#food';
     }
     
@@ -630,11 +644,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const typeText = quizResTitle.textContent;
       const emojiText = quizResEmoji.textContent;
       const shareUrl = window.location.href.split('#')[0];
-      const textToCopy = `🧭 [구로를 걷다] 나의 힐링 성향 분석 결과:\n\n✨ 유형: ${typeText} ${emojiText}\n\n나에게 꼭 맞는 구로구의 숨겨진 반나절 힐링 코스 찾기! 👇\n${shareUrl}`;
+      const textToCopy = isEnglish ?
+        `🧭 [Walk in Guro] My Healing Persona Result:\n\n✨ Type: ${typeText} ${emojiText}\n\nFind your perfect half-day healing walk in Guro! 👇\n${shareUrl}` :
+        `🧭 [구로를 걷다] 나의 힐링 성향 분석 결과:\n\n✨ 유형: ${typeText} ${emojiText}\n\n나에게 꼭 맞는 구로구의 숨겨진 반나절 힐링 코스 찾기! 👇\n${shareUrl}`;
       
       navigator.clipboard.writeText(textToCopy).then(() => {
         const originalText = quizShareBtn.textContent;
-        quizShareBtn.textContent = '복사 완료! 📋';
+        quizShareBtn.textContent = isEnglish ? 'Copied! 📋' : '복사 완료! 📋';
         setTimeout(() => {
           quizShareBtn.textContent = originalText;
         }, 2000);
@@ -664,7 +680,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Show Placeholder if API Key is not set
     if (!KAKAO_KEY || KAKAO_KEY === 'YOUR_JAVASCRIPT_KEY_HERE' || KAKAO_KEY === '') {
-      mapContainer.innerHTML = `
+      mapContainer.innerHTML = isEnglish ? `
+        <div class="map-placeholder">
+          <div class="map-placeholder-icon">🗺️</div>
+          <h4 class="map-placeholder-title">Kakao Map API Awaiting Integration</h4>
+          <p class="map-placeholder-desc">
+            This page includes fully functional Kakao Map API code.<br>
+            Enter your <code>Javascript Key</code> in <code>js/app.js</code> at the KAKAO_KEY variable to activate the interactive map.
+          </p>
+          <a href="https://developers.kakao.com/" target="_blank" rel="noopener" class="map-placeholder-btn">Kakao Developers Center</a>
+        </div>
+      ` : `
         <div class="map-placeholder">
           <div class="map-placeholder-icon">🗺️</div>
           <h4 class="map-placeholder-title">카카오맵 API 연동 대기 중</h4>
@@ -688,7 +714,13 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
     script.onerror = () => {
-      mapContainer.innerHTML = `
+      mapContainer.innerHTML = isEnglish ? `
+        <div class="map-placeholder">
+          <div class="map-placeholder-icon">⚠️</div>
+          <h4 class="map-placeholder-title">API Loading Error</h4>
+          <p class="map-placeholder-desc">Could not load Kakao Map script. Please check if your API key is valid or your domain is registered in the Kakao Console.</p>
+        </div>
+      ` : `
         <div class="map-placeholder">
           <div class="map-placeholder-icon">⚠️</div>
           <h4 class="map-placeholder-title">API 로드 에러</h4>
@@ -701,7 +733,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const initializeKakaoMap = (container) => {
     // Spot list with real-world coordinates (around Guro Hang-dong and Oryu-dong)
-    const mapSpots = [
+    const mapSpots = isEnglish ? [
+      {
+        num: '01',
+        name: 'Pureun Arboretum',
+        lat: 37.482701,
+        lng: 126.822956,
+        dur: '??~ 2 hours recommended',
+        desc: 'Seoul\'s first municipal arboretum featuring scenic reservoir walks.'
+      },
+      {
+        num: '02',
+        name: 'Hangdong Pureun Library',
+        lat: 37.484439,
+        lng: 126.824734,
+        dur: '??Free to explore',
+        desc: 'A quiet, cozy library overlooking the beautiful arboretum scenery.'
+      },
+      {
+        num: '03',
+        name: 'KB Forest Education Center',
+        lat: 37.483482,
+        lng: 126.824249,
+        dur: '??~ 15 mins required',
+        desc: 'An exotic glass greenhouse sheltering tropical and herb plants.'
+      },
+      {
+        num: '04',
+        name: 'Hangdong Railroad',
+        lat: 37.482743,
+        lng: 126.825221,
+        dur: '??~ 25 mins required',
+        desc: 'A nostalgic single-track railroad where cargo trains once traveled.'
+      },
+      {
+        num: '05',
+        name: 'Oryu Beodeul Town',
+        lat: 37.492211,
+        lng: 126.840612,
+        dur: '??~ 2+ hours',
+        desc: 'A charming local town filled with unique restaurants and cozy cafes.'
+      }
+    ] : [
       {
         num: '01',
         name: '푸른수목원',
@@ -781,10 +854,19 @@ document.addEventListener('DOMContentLoaded', () => {
       // Custom HTML overlay content
       const overlayContent = document.createElement('div');
       overlayContent.className = 'map-overlay-card';
-      overlayContent.innerHTML = `
+      overlayContent.innerHTML = isEnglish ? `
         <div class="map-overlay-hdr">
           <span class="map-overlay-title">STEP ${spot.num} ${spot.name}</span>
-          <button class="map-overlay-close">✕</button>
+          <button class="map-overlay-close">??/button>
+        </div>
+        <div class="map-overlay-body">
+          <p>${spot.desc}</p>
+          <span class="map-overlay-dur">${spot.dur}</span>
+        </div>
+      ` : `
+        <div class="map-overlay-hdr">
+          <span class="map-overlay-title">STEP ${spot.num} ${spot.name}</span>
+          <button class="map-overlay-close">??/button>
         </div>
         <div class="map-overlay-body">
           <p>${spot.desc}</p>
